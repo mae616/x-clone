@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "skills": {
+    "playwright": {
+      "source": "mae616/ai-tech-knowledge",
+      "sourceType": "github",
+      "computedHash": "b6c50574e026f01c57e71868e9b892a7cc6fbd7f2b69d82e49cdbaf348fb947b"
+    },
+    "react": {
+      "source": "mae616/ai-tech-knowledge",
+      "sourceType": "github",
+      "computedHash": "62b7a200789ef59811fe2f0abe0f137c3090afa75422a446e64883f86cb59d1f"
+    },
+    "tailwind": {
+      "source": "mae616/ai-tech-knowledge",
+      "sourceType": "github",
+      "computedHash": "2e63079ba934140361f0a9ee4919001ce855b3db025ff717d80e9fd5d795113e"
+    }
+  }
+}
