@@ -215,6 +215,7 @@
                   "id": "CnDD1",
                   "name": "ComposerBottom",
                   "width": "fill_container",
+                  "gap": 12,
                   "justifyContent": "end",
                   "alignItems": "center",
                   "children": [
@@ -672,7 +673,8 @@
                           "y": 1
                         },
                         "blur": 8
-                      }
+                      },
+                      "enabled": false
                     },
                     "VxDCN": {
                       "content": "フォロー中",
@@ -927,6 +929,9 @@
           "ref": "yQ8fD",
           "name": "sidebarP",
           "x": 0,
+          "width": 280,
+          "height": "fill_container",
+          "y": 0,
           "descendants": {
             "4aOYu": {
               "width": "fill_container",
@@ -1048,15 +1053,20 @@
                 "radius": 12
               },
               "layout": "vertical",
-              "gap": 20,
-              "padding": 24,
+              "gap": 16,
+              "padding": [
+                24,
+                24,
+                20,
+                24
+              ],
               "children": [
                 {
                   "type": "frame",
                   "id": "Zhaxc",
                   "name": "ProfileTop",
                   "width": "fill_container",
-                  "gap": 20,
+                  "gap": 16,
                   "alignItems": "center",
                   "children": [
                     {
@@ -1064,8 +1074,8 @@
                       "id": "Qwv4G",
                       "name": "ProfileAvatar",
                       "fill": "$warm-highlight-muted",
-                      "width": 72,
-                      "height": 72
+                      "width": 64,
+                      "height": 64
                     },
                     {
                       "type": "frame",
@@ -1073,7 +1083,7 @@
                       "name": "ProfileInfo",
                       "width": "fill_container",
                       "layout": "vertical",
-                      "gap": 4,
+                      "gap": 2,
                       "children": [
                         {
                           "type": "text",
@@ -1082,7 +1092,7 @@
                           "fill": "$text-primary",
                           "content": "さくら",
                           "fontFamily": "Noto Sans JP",
-                          "fontSize": 22,
+                          "fontSize": 20,
                           "fontWeight": "700"
                         },
                         {
@@ -1092,7 +1102,7 @@
                           "fill": "$text-tertiary",
                           "content": "@sakura",
                           "fontFamily": "Noto Sans JP",
-                          "fontSize": 14,
+                          "fontSize": 13,
                           "fontWeight": "normal"
                         }
                       ]
@@ -1157,6 +1167,19 @@
                   ]
                 },
                 {
+                  "type": "text",
+                  "id": "fZfgu",
+                  "name": "ProfileBio",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "お茶と読書が好き。静かな夜のひとときを大切にしています。",
+                  "lineHeight": 1.6,
+                  "fontFamily": "Noto Sans JP",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
                   "type": "frame",
                   "id": "eXwg9",
                   "name": "ProfileStats",
@@ -1170,7 +1193,7 @@
                   },
                   "gap": 32,
                   "padding": [
-                    16,
+                    12,
                     0,
                     0,
                     0
@@ -1560,7 +1583,7 @@
                   "id": "DXTOq",
                   "name": "UserName",
                   "fill": "$text-primary",
-                  "content": "自分",
+                  "content": "さくら",
                   "fontFamily": "Noto Sans JP",
                   "fontSize": 14,
                   "fontWeight": "600"
@@ -1570,7 +1593,7 @@
                   "id": "Lo4Uy",
                   "name": "UserHandle",
                   "fill": "$text-tertiary",
-                  "content": "@viewer",
+                  "content": "@sakura",
                   "fontFamily": "Noto Sans JP",
                   "fontSize": 12,
                   "fontWeight": "normal"
