@@ -1,13 +1,26 @@
 {
-  "meta": {
-    "version": 1
-  },
+  "meta": { "version": 1 },
   "defaultLocale": "ja-JP",
   "locales": {
     "ja-JP": {
-      "copy": {}
+      "copy": {
+        "app.name": "ほっとSNS",
+        "nav.timeline": "タイムライン",
+        "nav.users": "ユーザー一覧",
+        "nav.profile": "プロフィール",
+        "currentUser.name": "自分",
+        "currentUser.handle": "@viewer",
+        "timelinePage.title": "タイムライン",
+        "timelinePage.composer.placeholder": "いまどうしてる？",
+        "timelinePage.composer.charCount": "0/140",
+        "timelinePage.composer.submit": "投稿する",
+        "usersPage.title": "ユーザー一覧",
+        "usersPage.followButton.follow": "フォロー",
+        "usersPage.followButton.following": "フォロー中",
+        "profilePage.postsLabel": "投稿",
+        "profilePage.stats.following": "フォロー中",
+        "profilePage.stats.followers": "フォロワー"
+      }
     }
   }
 }
-
-

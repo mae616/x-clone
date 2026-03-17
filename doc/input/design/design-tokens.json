@@ -1,0 +1,133 @@
+{
+  "meta": { "version": 1 },
+  "primitives": {
+    "color": {
+      "stone": {
+        "50": "#FAFAF9",
+        "400": "#A8A29E",
+        "500": "#78716C",
+        "700": "#44403C",
+        "800": "#292524",
+        "900": "#1C1917"
+      },
+      "sage": {
+        "300": "#8BAA7F",
+        "400": "#A3BE98",
+        "muted": "#8BAA7F26"
+      },
+      "warm": {
+        "honey": "#D4A574",
+        "honeyMuted": "#D4A57426"
+      },
+      "red": {
+        "300": "#F0A0A0",
+        "muted": "#F0A0A026"
+      },
+      "blue": {
+        "muted": "#5B9BD526"
+      }
+    },
+    "border": {
+      "width": { "0": "0px", "1": "1px" },
+      "style": { "solid": "solid" },
+      "align": { "inside": "inside" }
+    },
+    "opacity": { "100": 1, "15": 0.15 },
+    "space": {
+      "0": "0px",
+      "1": "4px",
+      "2": "8px",
+      "3": "12px",
+      "4": "16px",
+      "5": "20px",
+      "6": "24px",
+      "8": "32px",
+      "12": "48px"
+    },
+    "radius": {
+      "sm": "8px",
+      "md": "12px",
+      "lg": "16px",
+      "full": "999px"
+    },
+    "font": {
+      "family": {
+        "primary": "Noto Sans JP"
+      },
+      "size": {
+        "xs": "12px",
+        "sm": "13px",
+        "md": "14px",
+        "base": "15px",
+        "lg": "16px",
+        "xl": "20px",
+        "2xl": "22px",
+        "3xl": "24px"
+      },
+      "weight": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700
+      },
+      "lineHeight": {
+        "tight": 1.0,
+        "normal": 1.5,
+        "relaxed": 1.6
+      }
+    },
+    "shadow": {
+      "card": "0 2px 8px rgba(0,0,0,0.12)"
+    },
+    "breakpoints": {
+      "sm": "640px",
+      "md": "768px",
+      "lg": "1024px",
+      "xl": "1440px"
+    }
+  },
+  "semantic": {
+    "color": {
+      "text": {
+        "primary": { "ref": "primitives.color.stone.50" },
+        "secondary": { "ref": "primitives.color.stone.400" },
+        "tertiary": { "ref": "primitives.color.stone.500" }
+      },
+      "surface": {
+        "page": { "ref": "primitives.color.stone.900" },
+        "card": { "ref": "primitives.color.stone.800" },
+        "elevated": { "ref": "primitives.color.stone.700" },
+        "hover": { "ref": "primitives.color.stone.800", "note": "#33302C は実装時に微調整可" }
+      },
+      "border": {
+        "default": { "ref": "primitives.color.stone.700", "note": "#3D3730 実装時に微調整可" },
+        "subtle": { "ref": "primitives.color.stone.800", "note": "#2E2A25 実装時に微調整可" }
+      },
+      "accent": {
+        "primary": { "ref": "primitives.color.sage.300" },
+        "hover": { "ref": "primitives.color.sage.400" },
+        "muted": { "ref": "primitives.color.sage.muted" },
+        "onAccent": { "ref": "primitives.color.stone.900" }
+      },
+      "danger": {
+        "primary": { "ref": "primitives.color.red.300" },
+        "muted": { "ref": "primitives.color.red.muted" }
+      },
+      "warmHighlight": {
+        "primary": { "ref": "primitives.color.warm.honey" },
+        "muted": { "ref": "primitives.color.warm.honeyMuted" }
+      }
+    },
+    "space": {
+      "page": { "ref": "primitives.space.8" },
+      "section": { "ref": "primitives.space.6" },
+      "card": { "ref": "primitives.space.5" },
+      "element": { "ref": "primitives.space.4" }
+    },
+    "radius": {
+      "card": { "ref": "primitives.radius.lg" },
+      "button": { "ref": "primitives.radius.full" },
+      "nav": { "ref": "primitives.radius.md" }
+    }
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "meta": { "version": 1 },
+  "components": [
+    {
+      "name": "Sidebar",
+      "description": "左サイドバー。ロゴ・ナビゲーション・現在ユーザー情報を含む共通コンポーネント",
+      "variants": {},
+      "defaults": {},
+      "slots": ["logo", "navigation", "currentUser"],
+      "styles": {
+        "backgroundColorRef": "semantic.color.surface.card",
+        "border": {
+          "colorRef": "semantic.color.border.subtle",
+          "widthRef": "primitives.border.width.1",
+          "styleRef": "primitives.border.style.solid",
+          "alignRef": "primitives.border.align.inside",
+          "sides": ["right"]
+        },
+        "width": "280px",
+        "paddingRef": "primitives.space.8"
+      },
+      "a11y": {
+        "role": "navigation",
+        "landmark": true
+      }
+    },
+    {
+      "name": "NavItem",
+      "description": "サイドバー内のナビゲーション項目。アイコン＋ラベル",
+      "variants": {
+        "state": ["default", "active"]
+      },
+      "defaults": { "state": "default" },
+      "slots": ["icon", "label"],
+      "styles": {
+        "state:default": {
+          "backgroundColorRef": "transparent",
+          "textColorRef": "semantic.color.text.secondary",
+          "iconColorRef": "semantic.color.text.secondary"
+        },
+        "state:active": {
+          "backgroundColorRef": "semantic.color.surface.hover",
+          "textColorRef": "semantic.color.text.primary",
+          "iconColorRef": "semantic.color.accent.primary"
+        },
+        "radiusRef": "semantic.radius.nav",
+        "paddingRef": ["primitives.space.3", "primitives.space.4"],
+        "gapRef": "primitives.space.3"
+      },
+      "a11y": {
+        "role": "link",
+        "keyboard": true,
+        "focusVisible": true
+      }
+    },
+    {
+      "name": "PostCard",
+      "description": "投稿カード。アバター＋ユーザー情報＋投稿内容を表示",
+      "variants": {},
+      "defaults": {},
+      "slots": ["avatar", "authorName", "handle", "timestamp", "content"],
+      "styles": {
+        "backgroundColorRef": "semantic.color.surface.card",
+        "border": {
+          "colorRef": "semantic.color.border.subtle",
+          "widthRef": "primitives.border.width.1",
+          "styleRef": "primitives.border.style.solid",
+          "alignRef": "primitives.border.align.inside"
+        },
+        "radiusRef": "semantic.radius.card",
+        "paddingRef": "primitives.space.5",
+        "gapRef": "primitives.space.3"
+      },
+      "a11y": {
+        "role": "article",
+        "keyboard": true
+      }
+    },
+    {
+      "name": "UserCard",
+      "description": "ユーザー一覧カード。アバター＋名前＋ハンドル＋フォローボタン",
+      "variants": {},
+      "defaults": {},
+      "slots": ["avatar", "name", "handle", "followButton"],
+      "styles": {
+        "backgroundColorRef": "semantic.color.surface.card",
+        "border": {
+          "colorRef": "semantic.color.border.subtle",
+          "widthRef": "primitives.border.width.1",
+          "styleRef": "primitives.border.style.solid",
+          "alignRef": "primitives.border.align.inside"
+        },
+        "radiusRef": "semantic.radius.card",
+        "paddingRef": "primitives.space.5",
+        "gapRef": "primitives.space.4"
+      },
+      "a11y": {
+        "role": "article",
+        "keyboard": true
+      }
+    },
+    {
+      "name": "Button",
+      "description": "汎用ボタン。投稿ボタン・フォローボタンに使用",
+      "variants": {
+        "tone": ["primary", "outline"],
+        "size": ["sm", "md"],
+        "state": ["default", "disabled"]
+      },
+      "defaults": { "tone": "primary", "size": "md", "state": "default" },
+      "slots": ["label"],
+      "styles": {
+        "tone:primary": {
+          "backgroundColorRef": "semantic.color.accent.primary",
+          "textColorRef": "semantic.color.accent.onAccent"
+        },
+        "tone:outline": {
+          "backgroundColorRef": "transparent",
+          "textColorRef": "semantic.color.accent.primary",
+          "border": {
+            "colorRef": "semantic.color.accent.primary",
+            "widthRef": "primitives.border.width.1"
+          }
+        },
+        "radiusRef": "semantic.radius.button"
+      },
+      "a11y": {
+        "role": "button",
+        "keyboard": true,
+        "focusVisible": true
+      }
+    },
+    {
+      "name": "Composer",
+      "description": "投稿入力エリア。アバター＋テキスト入力＋文字数カウント＋投稿ボタン",
+      "variants": {},
+      "defaults": {},
+      "slots": ["avatar", "input", "charCount", "submitButton"],
+      "styles": {
+        "backgroundColorRef": "semantic.color.surface.card",
+        "border": {
+          "colorRef": "semantic.color.border.subtle",
+          "widthRef": "primitives.border.width.1",
+          "styleRef": "primitives.border.style.solid",
+          "alignRef": "primitives.border.align.inside"
+        },
+        "radiusRef": "semantic.radius.card",
+        "paddingRef": "primitives.space.5",
+        "gapRef": "primitives.space.4"
+      },
+      "a11y": {
+        "role": "form",
+        "keyboard": true,
+        "ariaLabel": "投稿を作成"
+      }
+    },
+    {
+      "name": "ProfileHeader",
+      "description": "プロフィール画面のヘッダー。アバター＋名前＋ハンドル＋フォローボタン＋フォロー数/フォロワー数",
+      "variants": {},
+      "defaults": {},
+      "slots": ["avatar", "name", "handle", "followButton", "followingCount", "followersCount"],
+      "styles": {
+        "backgroundColorRef": "semantic.color.surface.card",
+        "border": {
+          "colorRef": "semantic.color.border.subtle",
+          "widthRef": "primitives.border.width.1",
+          "styleRef": "primitives.border.style.solid",
+          "alignRef": "primitives.border.align.inside"
+        },
+        "radiusRef": "semantic.radius.card",
+        "paddingRef": "primitives.space.6",
+        "gapRef": "primitives.space.5"
+      },
+      "a11y": {
+        "role": "banner",
+        "landmark": true
+      }
+    }
+  ]
+}

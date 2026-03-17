@@ -1,6 +1,153 @@
 {
-  "meta": {
-    "version": 1
+  "meta": { "version": 1 },
+  "viewports": {
+    "desktop": { "width": 1440, "height": 900 },
+    "mobile": { "width": 390, "height": 844 }
   },
-  "pages": []
+  "pages": [
+    {
+      "key": "TimelinePage",
+      "description": "タイムライン画面。フォロー中＋自分の投稿をcreatedAt降順で表示。投稿の作成が可能。",
+      "primaryAction": "投稿を作成する",
+      "frames": [
+        {
+          "key": "Sidebar",
+          "component": "Sidebar",
+          "layout": {
+            "type": "autoLayout",
+            "direction": "vertical",
+            "paddingTokenRef": "primitives.space.8"
+          },
+          "constraints": { "horizontal": "LEFT", "vertical": "TOP_BOTTOM" },
+          "resizing": { "horizontal": "FIXED", "vertical": "FILL" }
+        },
+        {
+          "key": "MainContent",
+          "layout": {
+            "type": "autoLayout",
+            "direction": "vertical",
+            "gapTokenRef": "primitives.space.6",
+            "paddingTokenRef": "primitives.space.8"
+          },
+          "constraints": { "horizontal": "SCALE", "vertical": "TOP_BOTTOM" },
+          "resizing": { "horizontal": "FILL", "vertical": "FILL" },
+          "nodes": [
+            {
+              "key": "PageTitle",
+              "type": "text",
+              "copyKey": "timelinePage.title",
+              "typographyTokenRef": "primitives.font.size.3xl",
+              "colorTokenRef": "semantic.color.text.primary"
+            },
+            {
+              "key": "Composer",
+              "component": "Composer"
+            },
+            {
+              "key": "Feed",
+              "type": "list",
+              "layout": {
+                "type": "autoLayout",
+                "direction": "vertical",
+                "gapTokenRef": "primitives.space.3"
+              },
+              "itemComponent": "PostCard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "UsersPage",
+      "description": "ユーザー一覧画面。全ユーザーを表示し、フォロー/アンフォローのトグルが可能。",
+      "primaryAction": "ユーザーをフォロー/アンフォローする",
+      "frames": [
+        {
+          "key": "Sidebar",
+          "component": "Sidebar"
+        },
+        {
+          "key": "MainContent",
+          "layout": {
+            "type": "autoLayout",
+            "direction": "vertical",
+            "gapTokenRef": "primitives.space.6",
+            "paddingTokenRef": "primitives.space.8"
+          },
+          "constraints": { "horizontal": "SCALE", "vertical": "TOP_BOTTOM" },
+          "resizing": { "horizontal": "FILL", "vertical": "FILL" },
+          "nodes": [
+            {
+              "key": "PageTitle",
+              "type": "text",
+              "copyKey": "usersPage.title",
+              "typographyTokenRef": "primitives.font.size.3xl",
+              "colorTokenRef": "semantic.color.text.primary"
+            },
+            {
+              "key": "UserList",
+              "type": "list",
+              "layout": {
+                "type": "autoLayout",
+                "direction": "vertical",
+                "gapTokenRef": "primitives.space.3"
+              },
+              "itemComponent": "UserCard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "ProfilePage",
+      "description": "プロフィール画面。選択したユーザーの情報（名前/ハンドル/フォロー数/フォロワー数）＋そのユーザーの投稿一覧を表示。",
+      "primaryAction": "ユーザーをフォロー/アンフォローする",
+      "frames": [
+        {
+          "key": "Sidebar",
+          "component": "Sidebar"
+        },
+        {
+          "key": "MainContent",
+          "layout": {
+            "type": "autoLayout",
+            "direction": "vertical",
+            "gapTokenRef": "primitives.space.6",
+            "paddingTokenRef": "primitives.space.8"
+          },
+          "constraints": { "horizontal": "SCALE", "vertical": "TOP_BOTTOM" },
+          "resizing": { "horizontal": "FILL", "vertical": "FILL" },
+          "nodes": [
+            {
+              "key": "ProfileHeader",
+              "component": "ProfileHeader"
+            },
+            {
+              "key": "PostsSection",
+              "type": "section",
+              "nodes": [
+                {
+                  "key": "SectionLabel",
+                  "type": "text",
+                  "copyKey": "profilePage.postsLabel",
+                  "typographyTokenRef": "primitives.font.size.lg",
+                  "colorTokenRef": "semantic.color.text.secondary"
+                },
+                {
+                  "key": "PostList",
+                  "type": "list",
+                  "layout": {
+                    "type": "autoLayout",
+                    "direction": "vertical",
+                    "gapTokenRef": "primitives.space.3"
+                  },
+                  "itemComponent": "PostCard"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
