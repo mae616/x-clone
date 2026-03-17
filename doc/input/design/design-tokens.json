@@ -13,11 +13,17 @@
       "sage": {
         "300": "#8BAA7F",
         "400": "#A3BE98",
+        "500": "#A8D4A0",
         "muted": "#8BAA7F26"
       },
       "warm": {
         "honey": "#D4A574",
-        "honeyMuted": "#D4A57426"
+        "honeyMuted": "#D4A57426",
+        "glow": "#D4A57410"
+      },
+      "glass": {
+        "card": "#FFFFFF0D",
+        "border": "#FFFFFF0F"
       },
       "red": {
         "300": "#F0A0A0",
@@ -77,7 +83,17 @@
       }
     },
     "shadow": {
-      "card": "0 2px 8px rgba(0,0,0,0.12)"
+      "card": "0 2px 8px rgba(0,0,0,0.12)",
+      "glowAccent": "0 2px 12px rgba(139,170,127,0.19)",
+      "glowAccentSubtle": "0 1px 8px rgba(139,170,127,0.09)"
+    },
+    "gradient": {
+      "accentButton": "linear-gradient(135deg, #8BAA7F 0%, #A8D4A0 100%)",
+      "warmGlow": "radial-gradient(ellipse at 55% 30%, rgba(212,165,116,0.06) 0%, transparent 100%)"
+    },
+    "blur": {
+      "glass": "12px",
+      "glassSidebar": "16px"
     },
     "breakpoints": {
       "sm": "640px",
@@ -96,18 +112,28 @@
       "surface": {
         "page": { "ref": "primitives.color.stone.900" },
         "card": { "ref": "primitives.color.stone.800" },
+        "cardGlass": { "ref": "primitives.color.glass.card", "note": "グラスモーフィズム用。backdrop-blur併用" },
         "elevated": { "ref": "primitives.color.stone.700" },
         "hover": { "ref": "primitives.color.stone.800", "note": "#33302C は実装時に微調整可" }
       },
+      "surfaceEffect": {
+        "pageGlow": { "ref": "primitives.gradient.warmGlow", "note": "ページ背景のラジアルグロー" },
+        "cardBlur": { "ref": "primitives.blur.glass", "note": "カードのbackdrop-blur" },
+        "sidebarBlur": { "ref": "primitives.blur.glassSidebar", "note": "サイドバーのbackdrop-blur" }
+      },
       "border": {
         "default": { "ref": "primitives.color.stone.700", "note": "#3D3730 実装時に微調整可" },
-        "subtle": { "ref": "primitives.color.stone.800", "note": "#2E2A25 実装時に微調整可" }
+        "subtle": { "ref": "primitives.color.stone.800", "note": "#2E2A25 実装時に微調整可" },
+        "glass": { "ref": "primitives.color.glass.border", "note": "グラスカード用の極薄白ボーダー" }
       },
       "accent": {
         "primary": { "ref": "primitives.color.sage.300" },
         "hover": { "ref": "primitives.color.sage.400" },
+        "gradientEnd": { "ref": "primitives.color.sage.500", "note": "ボタングラデーションの終点" },
         "muted": { "ref": "primitives.color.sage.muted" },
-        "onAccent": { "ref": "primitives.color.stone.900" }
+        "onAccent": { "ref": "primitives.color.stone.900" },
+        "buttonGradient": { "ref": "primitives.gradient.accentButton", "note": "ボタン用ソフトグラデーション" },
+        "glowShadow": { "ref": "primitives.shadow.glowAccent", "note": "ボタンのグローシャドウ" }
       },
       "danger": {
         "primary": { "ref": "primitives.color.red.300" },

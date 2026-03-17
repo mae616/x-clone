@@ -9,13 +9,122 @@
       "name": "TimelinePage",
       "width": 1440,
       "height": 900,
-      "fill": "$bg-page",
+      "fill": [
+        "$bg-page",
+        {
+          "type": "gradient",
+          "gradientType": "radial",
+          "enabled": true,
+          "opacity": 0.06,
+          "rotation": 0,
+          "size": {
+            "width": 1.2,
+            "height": 1.2
+          },
+          "colors": [
+            {
+              "color": "#D4A574",
+              "position": 0
+            },
+            {
+              "color": "#1C1917",
+              "position": 1
+            }
+          ],
+          "center": {
+            "x": 0.55,
+            "y": 0.3
+          }
+        }
+      ],
       "children": [
         {
           "id": "Cn9Q3",
           "type": "ref",
           "ref": "yQ8fD",
-          "name": "sidebarInst"
+          "name": "sidebarInst",
+          "x": 0,
+          "descendants": {
+            "4aOYu": {
+              "width": "fill_container",
+              "height": "fit_content",
+              "x": 24,
+              "y": 32
+            },
+            "6i4rE": {
+              "x": 40,
+              "y": 0
+            },
+            "naQAS": {
+              "width": "fill_container",
+              "height": "fit_content",
+              "x": 24,
+              "y": 85
+            },
+            "KKHXz": {
+              "height": "fit_content",
+              "x": 0,
+              "y": 0
+            },
+            "KKHXz/WpCTH": {
+              "x": 16,
+              "y": 13
+            },
+            "KKHXz/iIGiJ": {
+              "x": 48,
+              "y": 12
+            },
+            "EDO43": {
+              "height": "fit_content",
+              "x": 0,
+              "y": 50
+            },
+            "EDO43/WpCTH": {
+              "x": 16,
+              "y": 13
+            },
+            "EDO43/iIGiJ": {
+              "x": 48,
+              "y": 12
+            },
+            "PpO35": {
+              "height": "fit_content",
+              "x": 0,
+              "y": 100
+            },
+            "PpO35/WpCTH": {
+              "x": 16,
+              "y": 13
+            },
+            "PpO35/iIGiJ": {
+              "x": 48,
+              "y": 12
+            },
+            "ktFmE": {
+              "width": "fill_container",
+              "height": "fill_container",
+              "x": 24,
+              "y": 231
+            },
+            "TCnhg": {
+              "width": "fill_container",
+              "height": "fit_content",
+              "x": 24,
+              "y": 812
+            },
+            "cbOaC": {
+              "y": 16
+            },
+            "gY5pL": {
+              "width": "fit_content",
+              "height": "fit_content",
+              "x": 52,
+              "y": 16.5
+            },
+            "Lo4Uy": {
+              "y": 22
+            }
+          }
         },
         {
           "type": "frame",
@@ -56,12 +165,16 @@
               "id": "tO5D6",
               "name": "Composer",
               "width": "fill_container",
-              "fill": "$bg-card",
+              "fill": "$bg-card-glass",
               "cornerRadius": "$radius-lg",
               "stroke": {
                 "align": "inside",
                 "thickness": 1,
-                "fill": "$border-subtle"
+                "fill": "$border-glass"
+              },
+              "effect": {
+                "type": "background_blur",
+                "radius": 12
               },
               "layout": "vertical",
               "gap": 16,
@@ -92,7 +205,8 @@
                       "content": "いまどうしてる？",
                       "lineHeight": 1.6,
                       "fontFamily": "Noto Sans JP",
-                      "fontSize": 15
+                      "fontSize": 15,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -118,8 +232,36 @@
                       "type": "frame",
                       "id": "4AxHk",
                       "name": "PostButton",
-                      "fill": "$accent",
+                      "fill": {
+                        "type": "gradient",
+                        "gradientType": "linear",
+                        "enabled": true,
+                        "rotation": 135,
+                        "size": {
+                          "height": 1
+                        },
+                        "colors": [
+                          {
+                            "color": "$accent-gradient-start",
+                            "position": 0
+                          },
+                          {
+                            "color": "$accent-gradient-end",
+                            "position": 1
+                          }
+                        ]
+                      },
                       "cornerRadius": "$radius-full",
+                      "effect": {
+                        "type": "shadow",
+                        "shadowType": "outer",
+                        "color": "#8BAA7F30",
+                        "offset": {
+                          "x": 0,
+                          "y": 2
+                        },
+                        "blur": 12
+                      },
                       "gap": 8,
                       "padding": [
                         10,
@@ -156,18 +298,42 @@
                   "type": "ref",
                   "ref": "4hkIP",
                   "name": "post1",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "x": 0,
+                  "y": 0,
                   "descendants": {
+                    "U5DpU": {
+                      "x": 20,
+                      "y": 20
+                    },
+                    "FvbGD": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 72,
+                      "y": 20
+                    },
+                    "SgYmo": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "yXMlt": {
                       "content": "さくら"
                     },
                     "mrWkR": {
-                      "content": "@sakura"
+                      "content": "@sakura",
+                      "x": 50,
+                      "y": 0.5
                     },
                     "ZwEpr": {
-                      "content": "· 5分前"
+                      "content": "· 5分前",
+                      "x": 111,
+                      "y": 0.5
                     },
                     "rIi9J": {
-                      "content": "今日も一日お疲れさまでした。夜風が気持ちいい季節になりましたね。窓を開けて深呼吸すると、少しだけ心が軽くなる気がします。"
+                      "content": "今日も一日お疲れさまでした。夜風が気持ちいい季節になりましたね。窓を開けて深呼吸すると、少しだけ心が軽くなる気がします。",
+                      "width": "fill_container",
+                      "y": 28
                     }
                   }
                 },
@@ -176,21 +342,43 @@
                   "type": "ref",
                   "ref": "4hkIP",
                   "name": "post2",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "x": 0,
+                  "y": 104,
                   "descendants": {
                     "U5DpU": {
-                      "fill": "$accent-muted"
+                      "fill": "$accent-muted",
+                      "x": 20,
+                      "y": 20
+                    },
+                    "FvbGD": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 72,
+                      "y": 20
+                    },
+                    "SgYmo": {
+                      "width": "fill_container",
+                      "height": "fit_content"
                     },
                     "yXMlt": {
                       "content": "はると"
                     },
                     "mrWkR": {
-                      "content": "@haruto"
+                      "content": "@haruto",
+                      "x": 50,
+                      "y": 0.5
                     },
                     "ZwEpr": {
-                      "content": "· 20分前"
+                      "content": "· 20分前",
+                      "x": 111,
+                      "y": 0.5
                     },
                     "rIi9J": {
-                      "content": "近所のカフェで見つけた新しいブレンド、すごく美味しかった。明日も行こうかな。"
+                      "content": "近所のカフェで見つけた新しいブレンド、すごく美味しかった。明日も行こうかな。",
+                      "width": "fill_container",
+                      "y": 28
                     }
                   }
                 },
@@ -199,21 +387,43 @@
                   "type": "ref",
                   "ref": "4hkIP",
                   "name": "post3",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "x": 0,
+                  "y": 208,
                   "descendants": {
                     "U5DpU": {
-                      "fill": "$danger-muted"
+                      "fill": "$danger-muted",
+                      "x": 20,
+                      "y": 20
+                    },
+                    "FvbGD": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 72,
+                      "y": 20
+                    },
+                    "SgYmo": {
+                      "width": "fill_container",
+                      "height": "fit_content"
                     },
                     "yXMlt": {
                       "content": "ゆき"
                     },
                     "mrWkR": {
-                      "content": "@yuki"
+                      "content": "@yuki",
+                      "x": 36,
+                      "y": 0.5
                     },
                     "ZwEpr": {
-                      "content": "· 1時間前"
+                      "content": "· 1時間前",
+                      "x": 82,
+                      "y": 0.5
                     },
                     "rIi9J": {
-                      "content": "読みかけの本をやっと読み終えた。静かな夜に読書するのが最高の贅沢。"
+                      "content": "読みかけの本をやっと読み終えた。静かな夜に読書するのが最高の贅沢。",
+                      "width": "fill_container",
+                      "y": 28
                     }
                   }
                 }
@@ -231,33 +441,128 @@
       "name": "UsersPage",
       "width": 1440,
       "height": 900,
-      "fill": "$bg-page",
+      "fill": [
+        "$bg-page",
+        {
+          "type": "gradient",
+          "gradientType": "radial",
+          "enabled": true,
+          "opacity": 0.06,
+          "rotation": 0,
+          "size": {
+            "width": 1.2,
+            "height": 1.2
+          },
+          "colors": [
+            {
+              "color": "#D4A574",
+              "position": 0
+            },
+            {
+              "color": "#1C1917",
+              "position": 1
+            }
+          ],
+          "center": {
+            "x": 0.55,
+            "y": 0.3
+          }
+        }
+      ],
       "children": [
         {
           "id": "L2TRh",
           "type": "ref",
           "ref": "yQ8fD",
           "name": "sidebarU",
+          "x": 0,
           "descendants": {
+            "4aOYu": {
+              "width": "fill_container",
+              "height": "fit_content",
+              "x": 24,
+              "y": 32
+            },
+            "6i4rE": {
+              "x": 40,
+              "y": 0
+            },
+            "naQAS": {
+              "width": "fill_container",
+              "height": "fit_content",
+              "x": 24,
+              "y": 85
+            },
             "KKHXz": {
-              "fill": "#00000000"
+              "fill": "#00000000",
+              "height": "fit_content",
+              "x": 0,
+              "y": 0
             },
             "KKHXz/WpCTH": {
-              "fill": "$text-secondary"
+              "fill": "$text-secondary",
+              "x": 16,
+              "y": 13
             },
             "KKHXz/iIGiJ": {
               "fill": "$text-secondary",
-              "fontWeight": "500"
+              "fontWeight": "500",
+              "x": 48,
+              "y": 12
             },
             "EDO43": {
-              "fill": "$bg-hover"
+              "fill": "$bg-hover",
+              "height": "fit_content",
+              "x": 0,
+              "y": 50
             },
             "EDO43/WpCTH": {
-              "fill": "$accent"
+              "fill": "$accent",
+              "x": 16,
+              "y": 13
             },
             "EDO43/iIGiJ": {
               "fill": "$text-primary",
-              "fontWeight": "600"
+              "fontWeight": "600",
+              "x": 48,
+              "y": 12
+            },
+            "PpO35": {
+              "height": "fit_content",
+              "x": 0,
+              "y": 100
+            },
+            "PpO35/WpCTH": {
+              "x": 16,
+              "y": 13
+            },
+            "PpO35/iIGiJ": {
+              "x": 48,
+              "y": 12
+            },
+            "ktFmE": {
+              "width": "fill_container",
+              "height": "fill_container",
+              "x": 24,
+              "y": 231
+            },
+            "TCnhg": {
+              "width": "fill_container",
+              "height": "fit_content",
+              "x": 24,
+              "y": 812
+            },
+            "cbOaC": {
+              "y": 16
+            },
+            "gY5pL": {
+              "width": "fit_content",
+              "height": "fit_content",
+              "x": 52,
+              "y": 16.5
+            },
+            "Lo4Uy": {
+              "y": 22
             }
           }
         },
@@ -307,24 +612,73 @@
                   "type": "ref",
                   "ref": "CcUps",
                   "name": "u1",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "x": 0,
+                  "y": 0,
                   "descendants": {
+                    "8G200": {
+                      "x": 20,
+                      "y": 20
+                    },
+                    "pJfKE": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 84,
+                      "y": 21.5
+                    },
                     "9kkmo": {
                       "content": "さくら"
                     },
                     "XgWqy": {
-                      "content": "@sakura"
+                      "content": "@sakura",
+                      "y": 26
                     },
                     "B3lZY": {
                       "fill": "#00000000",
                       "stroke": {
                         "align": "inside",
                         "thickness": 1,
-                        "fill": "$accent"
+                        "fill": {
+                          "type": "gradient",
+                          "gradientType": "linear",
+                          "enabled": true,
+                          "rotation": 135,
+                          "size": {
+                            "height": 1
+                          },
+                          "colors": [
+                            {
+                              "color": "#8BAA7F",
+                              "position": 0
+                            },
+                            {
+                              "color": "#A8D4A0",
+                              "position": 1
+                            }
+                          ]
+                        }
+                      },
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 938,
+                      "y": 26.5,
+                      "effect": {
+                        "type": "shadow",
+                        "shadowType": "outer",
+                        "color": "#8BAA7F18",
+                        "offset": {
+                          "x": 0,
+                          "y": 1
+                        },
+                        "blur": 8
                       }
                     },
                     "VxDCN": {
                       "content": "フォロー中",
-                      "fill": "$accent"
+                      "fill": "$accent",
+                      "x": 20,
+                      "y": 8
                     }
                   }
                 },
@@ -333,15 +687,38 @@
                   "type": "ref",
                   "ref": "CcUps",
                   "name": "u2",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "x": 0,
+                  "y": 100,
                   "descendants": {
                     "8G200": {
-                      "fill": "$accent-muted"
+                      "fill": "$accent-muted",
+                      "x": 20,
+                      "y": 20
+                    },
+                    "pJfKE": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 84,
+                      "y": 21.5
                     },
                     "9kkmo": {
                       "content": "はると"
                     },
                     "XgWqy": {
-                      "content": "@haruto"
+                      "content": "@haruto",
+                      "y": 26
+                    },
+                    "B3lZY": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 951,
+                      "y": 26.5
+                    },
+                    "VxDCN": {
+                      "x": 20,
+                      "y": 8
                     }
                   }
                 },
@@ -350,27 +727,74 @@
                   "type": "ref",
                   "ref": "CcUps",
                   "name": "u3",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "x": 0,
+                  "y": 200,
                   "descendants": {
                     "8G200": {
-                      "fill": "$danger-muted"
+                      "fill": "$danger-muted",
+                      "x": 20,
+                      "y": 20
+                    },
+                    "pJfKE": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 84,
+                      "y": 21.5
                     },
                     "9kkmo": {
                       "content": "ゆき"
                     },
                     "XgWqy": {
-                      "content": "@yuki"
+                      "content": "@yuki",
+                      "y": 26
                     },
                     "B3lZY": {
                       "fill": "#00000000",
                       "stroke": {
                         "align": "inside",
                         "thickness": 1,
-                        "fill": "$accent"
+                        "fill": {
+                          "type": "gradient",
+                          "gradientType": "linear",
+                          "enabled": true,
+                          "rotation": 135,
+                          "size": {
+                            "height": 1
+                          },
+                          "colors": [
+                            {
+                              "color": "#8BAA7F",
+                              "position": 0
+                            },
+                            {
+                              "color": "#A8D4A0",
+                              "position": 1
+                            }
+                          ]
+                        }
+                      },
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 938,
+                      "y": 26.5,
+                      "effect": {
+                        "type": "shadow",
+                        "shadowType": "outer",
+                        "color": "#8BAA7F18",
+                        "offset": {
+                          "x": 0,
+                          "y": 1
+                        },
+                        "blur": 8
                       }
                     },
                     "VxDCN": {
                       "content": "フォロー中",
-                      "fill": "$accent"
+                      "fill": "$accent",
+                      "x": 20,
+                      "y": 8
                     }
                   }
                 },
@@ -379,15 +803,38 @@
                   "type": "ref",
                   "ref": "CcUps",
                   "name": "u4",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "x": 0,
+                  "y": 300,
                   "descendants": {
                     "8G200": {
-                      "fill": "#D4A57426"
+                      "fill": "#D4A57426",
+                      "x": 20,
+                      "y": 20
+                    },
+                    "pJfKE": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 84,
+                      "y": 21.5
                     },
                     "9kkmo": {
                       "content": "りく"
                     },
                     "XgWqy": {
-                      "content": "@riku"
+                      "content": "@riku",
+                      "y": 26
+                    },
+                    "B3lZY": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 951,
+                      "y": 26.5
+                    },
+                    "VxDCN": {
+                      "x": 20,
+                      "y": 8
                     }
                   }
                 },
@@ -396,15 +843,38 @@
                   "type": "ref",
                   "ref": "CcUps",
                   "name": "u5",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "x": 0,
+                  "y": 400,
                   "descendants": {
                     "8G200": {
-                      "fill": "#5B9BD526"
+                      "fill": "#5B9BD526",
+                      "x": 20,
+                      "y": 20
+                    },
+                    "pJfKE": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 84,
+                      "y": 21.5
                     },
                     "9kkmo": {
                       "content": "あおい"
                     },
                     "XgWqy": {
-                      "content": "@aoi"
+                      "content": "@aoi",
+                      "y": 26
+                    },
+                    "B3lZY": {
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "x": 951,
+                      "y": 26.5
+                    },
+                    "VxDCN": {
+                      "x": 20,
+                      "y": 8
                     }
                   }
                 }
@@ -422,33 +892,128 @@
       "name": "ProfilePage",
       "width": 1440,
       "height": 900,
-      "fill": "$bg-page",
+      "fill": [
+        "$bg-page",
+        {
+          "type": "gradient",
+          "gradientType": "radial",
+          "enabled": true,
+          "opacity": 0.06,
+          "rotation": 0,
+          "size": {
+            "width": 1.2,
+            "height": 1.2
+          },
+          "colors": [
+            {
+              "color": "#D4A574",
+              "position": 0
+            },
+            {
+              "color": "#1C1917",
+              "position": 1
+            }
+          ],
+          "center": {
+            "x": 0.55,
+            "y": 0.3
+          }
+        }
+      ],
       "children": [
         {
           "id": "dk2AS",
           "type": "ref",
           "ref": "yQ8fD",
           "name": "sidebarP",
+          "x": 0,
           "descendants": {
+            "4aOYu": {
+              "width": "fill_container",
+              "height": "fit_content",
+              "x": 24,
+              "y": 32
+            },
+            "6i4rE": {
+              "x": 40,
+              "y": 0
+            },
+            "naQAS": {
+              "width": "fill_container",
+              "height": "fit_content",
+              "x": 24,
+              "y": 85
+            },
             "KKHXz": {
-              "fill": "#00000000"
+              "fill": "#00000000",
+              "height": "fit_content",
+              "x": 0,
+              "y": 0
             },
             "KKHXz/WpCTH": {
-              "fill": "$text-secondary"
+              "fill": "$text-secondary",
+              "x": 16,
+              "y": 13
             },
             "KKHXz/iIGiJ": {
               "fill": "$text-secondary",
-              "fontWeight": "500"
+              "fontWeight": "500",
+              "x": 48,
+              "y": 12
+            },
+            "EDO43": {
+              "height": "fit_content",
+              "x": 0,
+              "y": 50
+            },
+            "EDO43/WpCTH": {
+              "x": 16,
+              "y": 13
+            },
+            "EDO43/iIGiJ": {
+              "x": 48,
+              "y": 12
             },
             "PpO35": {
-              "fill": "$bg-hover"
+              "fill": "$bg-hover",
+              "height": "fit_content",
+              "x": 0,
+              "y": 100
             },
             "PpO35/WpCTH": {
-              "fill": "$accent"
+              "fill": "$accent",
+              "x": 16,
+              "y": 13
             },
             "PpO35/iIGiJ": {
               "fill": "$text-primary",
-              "fontWeight": "600"
+              "fontWeight": "600",
+              "x": 48,
+              "y": 12
+            },
+            "ktFmE": {
+              "width": "fill_container",
+              "height": "fill_container",
+              "x": 24,
+              "y": 231
+            },
+            "TCnhg": {
+              "width": "fill_container",
+              "height": "fit_content",
+              "x": 24,
+              "y": 812
+            },
+            "cbOaC": {
+              "y": 16
+            },
+            "gY5pL": {
+              "width": "fit_content",
+              "height": "fit_content",
+              "x": 52,
+              "y": 16.5
+            },
+            "Lo4Uy": {
+              "y": 22
             }
           }
         },
@@ -471,12 +1036,16 @@
               "id": "joxB4",
               "name": "ProfileHeader",
               "width": "fill_container",
-              "fill": "$bg-card",
+              "fill": "$bg-card-glass",
               "cornerRadius": "$radius-lg",
               "stroke": {
                 "align": "inside",
                 "thickness": 1,
-                "fill": "$border-subtle"
+                "fill": "$border-glass"
+              },
+              "effect": {
+                "type": "background_blur",
+                "radius": 12
               },
               "layout": "vertical",
               "gap": 20,
@@ -537,7 +1106,35 @@
                       "stroke": {
                         "align": "inside",
                         "thickness": 1,
-                        "fill": "$accent"
+                        "fill": {
+                          "type": "gradient",
+                          "gradientType": "linear",
+                          "enabled": true,
+                          "rotation": 135,
+                          "size": {
+                            "height": 1
+                          },
+                          "colors": [
+                            {
+                              "color": "#8BAA7F",
+                              "position": 0
+                            },
+                            {
+                              "color": "#A8D4A0",
+                              "position": 1
+                            }
+                          ]
+                        }
+                      },
+                      "effect": {
+                        "type": "shadow",
+                        "shadowType": "outer",
+                        "color": "#8BAA7F20",
+                        "offset": {
+                          "x": 0,
+                          "y": 1
+                        },
+                        "blur": 8
                       },
                       "padding": [
                         10,
@@ -664,18 +1261,42 @@
                   "type": "ref",
                   "ref": "4hkIP",
                   "name": "pp1",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "x": 0,
+                  "y": 35,
                   "descendants": {
+                    "U5DpU": {
+                      "x": 20,
+                      "y": 20
+                    },
+                    "FvbGD": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 72,
+                      "y": 20
+                    },
+                    "SgYmo": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "yXMlt": {
                       "content": "さくら"
                     },
                     "mrWkR": {
-                      "content": "@sakura"
+                      "content": "@sakura",
+                      "x": 50,
+                      "y": 0.5
                     },
                     "ZwEpr": {
-                      "content": "· 5分前"
+                      "content": "· 5分前",
+                      "x": 111,
+                      "y": 0.5
                     },
                     "rIi9J": {
-                      "content": "今日も一日お疲れさまでした。夜風が気持ちいい季節になりましたね。窓を開けて深呼吸すると、少しだけ心が軽くなる気がします。"
+                      "content": "今日も一日お疲れさまでした。夜風が気持ちいい季節になりましたね。窓を開けて深呼吸すると、少しだけ心が軽くなる気がします。",
+                      "width": "fill_container",
+                      "y": 28
                     }
                   }
                 },
@@ -684,18 +1305,42 @@
                   "type": "ref",
                   "ref": "4hkIP",
                   "name": "pp2",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "x": 0,
+                  "y": 139,
                   "descendants": {
+                    "U5DpU": {
+                      "x": 20,
+                      "y": 20
+                    },
+                    "FvbGD": {
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "x": 72,
+                      "y": 20
+                    },
+                    "SgYmo": {
+                      "width": "fill_container",
+                      "height": "fit_content"
+                    },
                     "yXMlt": {
                       "content": "さくら"
                     },
                     "mrWkR": {
-                      "content": "@sakura"
+                      "content": "@sakura",
+                      "x": 50,
+                      "y": 0.5
                     },
                     "ZwEpr": {
-                      "content": "· 昨日"
+                      "content": "· 昨日",
+                      "x": 111,
+                      "y": 0.5
                     },
                     "rIi9J": {
-                      "content": "雨上がりの空がきれいだった。虹は見えなかったけど、雲の隙間から差す光がとても穏やかで。"
+                      "content": "雨上がりの空がきれいだった。虹は見えなかったけど、雲の隙間から差す光がとても穏やかで。",
+                      "width": "fill_container",
+                      "y": 28
                     }
                   }
                 }
@@ -714,13 +1359,39 @@
       "reusable": true,
       "width": 280,
       "height": "fill_container(900)",
-      "fill": "$bg-card",
+      "fill": [
+        "#FFFFFF08",
+        {
+          "type": "gradient",
+          "gradientType": "linear",
+          "enabled": true,
+          "opacity": 0.03,
+          "rotation": 180,
+          "size": {
+            "height": 1
+          },
+          "colors": [
+            {
+              "color": "#D4A574",
+              "position": 0
+            },
+            {
+              "color": "#1C1917",
+              "position": 1
+            }
+          ]
+        }
+      ],
       "stroke": {
         "align": "inside",
         "thickness": {
           "right": 1
         },
-        "fill": "$border-subtle"
+        "fill": "$border-glass"
+      },
+      "effect": {
+        "type": "background_blur",
+        "radius": 16
       },
       "layout": "vertical",
       "padding": [
@@ -778,15 +1449,22 @@
               "ref": "sOj4Z",
               "fill": "$bg-hover",
               "name": "navTimeline",
+              "height": "fit_content",
+              "x": 0,
+              "y": 0,
               "descendants": {
                 "WpCTH": {
                   "iconFontName": "newspaper",
-                  "fill": "$accent"
+                  "fill": "$accent",
+                  "x": 16,
+                  "y": 13
                 },
                 "iIGiJ": {
                   "content": "タイムライン",
                   "fill": "$text-primary",
-                  "fontWeight": "600"
+                  "fontWeight": "600",
+                  "x": 48,
+                  "y": 12
                 }
               }
             },
@@ -795,12 +1473,19 @@
               "type": "ref",
               "ref": "sOj4Z",
               "name": "navUsers",
+              "height": "fit_content",
+              "x": 0,
+              "y": 50,
               "descendants": {
                 "WpCTH": {
-                  "iconFontName": "users"
+                  "iconFontName": "users",
+                  "x": 16,
+                  "y": 13
                 },
                 "iIGiJ": {
-                  "content": "ユーザー一覧"
+                  "content": "ユーザー一覧",
+                  "x": 48,
+                  "y": 12
                 }
               }
             },
@@ -809,12 +1494,19 @@
               "type": "ref",
               "ref": "sOj4Z",
               "name": "navProfile",
+              "height": "fit_content",
+              "x": 0,
+              "y": 100,
               "descendants": {
                 "WpCTH": {
-                  "iconFontName": "user"
+                  "iconFontName": "user",
+                  "x": 16,
+                  "y": 13
                 },
                 "iIGiJ": {
-                  "content": "プロフィール"
+                  "content": "プロフィール",
+                  "x": 48,
+                  "y": 12
                 }
               }
             }
@@ -880,7 +1572,8 @@
                   "fill": "$text-tertiary",
                   "content": "@viewer",
                   "fontFamily": "Noto Sans JP",
-                  "fontSize": 12
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
             }
@@ -934,12 +1627,16 @@
       "name": "PostCard",
       "reusable": true,
       "width": "fill_container(600)",
-      "fill": "$bg-card",
+      "fill": "$bg-card-glass",
       "cornerRadius": "$radius-lg",
       "stroke": {
         "align": "inside",
         "thickness": 1,
-        "fill": "$border-subtle"
+        "fill": "$border-glass"
+      },
+      "effect": {
+        "type": "background_blur",
+        "radius": 12
       },
       "gap": 12,
       "padding": 20,
@@ -1010,7 +1707,8 @@
               "content": "今日も一日お疲れさまでした。夜風が気持ちいい季節になりましたね。",
               "lineHeight": 1.6,
               "fontFamily": "Noto Sans JP",
-              "fontSize": 15
+              "fontSize": 15,
+              "fontWeight": "normal"
             }
           ]
         }
@@ -1024,12 +1722,16 @@
       "name": "UserCard",
       "reusable": true,
       "width": "fill_container(600)",
-      "fill": "$bg-card",
+      "fill": "$bg-card-glass",
       "cornerRadius": "$radius-lg",
       "stroke": {
         "align": "inside",
         "thickness": 1,
-        "fill": "$border-subtle"
+        "fill": "$border-glass"
+      },
+      "effect": {
+        "type": "background_blur",
+        "radius": 12
       },
       "gap": 16,
       "padding": 20,
@@ -1077,8 +1779,36 @@
           "type": "frame",
           "id": "B3lZY",
           "name": "FollowBtn",
-          "fill": "$accent",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 135,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "$accent-gradient-start",
+                "position": 0
+              },
+              {
+                "color": "$accent-gradient-end",
+                "position": 1
+              }
+            ]
+          },
           "cornerRadius": "$radius-full",
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#8BAA7F30",
+            "offset": {
+              "x": 0,
+              "y": 2
+            },
+            "blur": 12
+          },
           "padding": [
             8,
             20
@@ -1212,6 +1942,26 @@
     "warm-highlight-muted": {
       "type": "color",
       "value": "#D4A57426"
+    },
+    "accent-gradient-end": {
+      "type": "color",
+      "value": "#A8D4A0"
+    },
+    "accent-gradient-start": {
+      "type": "color",
+      "value": "#8BAA7F"
+    },
+    "bg-card-glass": {
+      "type": "color",
+      "value": "#FFFFFF0D"
+    },
+    "bg-glow-warm": {
+      "type": "color",
+      "value": "#D4A57410"
+    },
+    "border-glass": {
+      "type": "color",
+      "value": "#FFFFFF0F"
     }
   }
 }
