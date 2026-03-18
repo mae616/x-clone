@@ -1,5 +1,5 @@
 {
-  "meta": { "version": 2, "source": "Pencil MCP x-clone-mvp.pen", "updated": "2026-03-18" },
+  "meta": { "version": 3, "source": "Pencil MCP x-clone-mvp.pen", "updated": "2026-03-18", "note": "v3: ボトムナビラベル追加" },
   "defaultLocale": "ja-JP",
   "locales": {
     "ja-JP": {
@@ -8,6 +8,9 @@
         "nav.timeline": "タイムライン",
         "nav.users": "ユーザー一覧",
         "nav.profile": "プロフィール",
+        "nav.mobile.timeline": "タイムライン",
+        "nav.mobile.users": "ユーザー",
+        "nav.mobile.profile": "プロフィール",
         "currentUser.name": "さくら",
         "currentUser.handle": "@sakura",
         "timelinePage.title": "タイムライン",

@@ -1,5 +1,5 @@
 {
-  "meta": { "version": 2, "source": "Pencil MCP x-clone-mvp.pen", "updated": "2026-03-18" },
+  "meta": { "version": 3, "source": "Pencil MCP x-clone-mvp.pen", "updated": "2026-03-18", "note": "v3: BottomNavBar/TabletSidebar追加" },
   "components": [
     {
       "name": "Sidebar",
@@ -295,6 +295,91 @@
       },
       "a11y": {
         "role": "banner",
+        "landmark": true
+      }
+    },
+    {
+      "name": "BottomNavBar",
+      "description": "モバイル用ボトムナビゲーション。pill型タブバーで3タブ切り替え。<768pxで表示",
+      "variants": {},
+      "defaults": {},
+      "slots": ["tabs"],
+      "styles": {
+        "container": {
+          "layout": "horizontal",
+          "width": "fill",
+          "paddingRef": "primitives.bottomNav.container.padding"
+        },
+        "pill": {
+          "layout": "horizontal",
+          "width": "fill",
+          "heightRef": "primitives.bottomNav.pill.height",
+          "cornerRadiusRef": "primitives.bottomNav.pill.cornerRadius",
+          "paddingRef": "primitives.bottomNav.pill.padding",
+          "fillRef": "primitives.bottomNav.pill.fillRef",
+          "strokeRef": "primitives.bottomNav.pill.strokeRef",
+          "effectRef": "semantic.color.surfaceEffect.cardBlur"
+        },
+        "tab": {
+          "layout": "vertical",
+          "cornerRadiusRef": "primitives.bottomNav.tab.cornerRadius",
+          "gapRef": "primitives.bottomNav.tab.gap",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "state:active": {
+            "fillRef": "semantic.color.accent.primary",
+            "iconColorRef": "semantic.color.accent.onAccent",
+            "labelColorRef": "semantic.color.accent.onAccent",
+            "labelWeightRef": "primitives.font.weight.semibold"
+          },
+          "state:default": {
+            "fillRef": "transparent",
+            "iconColorRef": "semantic.color.text.secondary",
+            "labelColorRef": "semantic.color.text.secondary",
+            "labelWeightRef": "primitives.font.weight.medium"
+          }
+        }
+      },
+      "a11y": {
+        "role": "navigation",
+        "landmark": true,
+        "keyboard": true
+      }
+    },
+    {
+      "name": "TabletSidebar",
+      "description": "タブレット用アイコンのみサイドバー。768px〜1023pxで表示。ロゴ・アイコンナビ・アバターのみ",
+      "variants": {},
+      "defaults": {},
+      "slots": ["logo", "navigation", "avatar"],
+      "styles": {
+        "widthRef": "primitives.tabletSidebar.width",
+        "fillRef": "semantic.color.surface.sidebarGlass",
+        "fillOverlay": { "ref": "primitives.gradient.sidebarWarmOverlay" },
+        "effectRef": "semantic.color.surfaceEffect.sidebarBlur",
+        "stroke": {
+          "colorRef": "semantic.color.border.glass",
+          "widthRef": "primitives.border.width.1",
+          "sides": ["right"]
+        },
+        "padding": ["24px", "0"],
+        "alignItems": "center",
+        "navItem": {
+          "sizeRef": "primitives.tabletSidebar.navItemSize",
+          "cornerRadiusRef": "primitives.tabletSidebar.navItemRadius",
+          "iconSizeRef": "primitives.tabletSidebar.iconSize",
+          "state:active": {
+            "fillRef": "semantic.color.surface.navActive",
+            "iconColorRef": "semantic.color.accent.primary"
+          },
+          "state:default": {
+            "fillRef": "transparent",
+            "iconColorRef": "semantic.color.text.secondary"
+          }
+        }
+      },
+      "a11y": {
+        "role": "navigation",
         "landmark": true
       }
     }
