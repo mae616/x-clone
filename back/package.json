@@ -1,0 +1,13 @@
+{
+  "name": "x-clone-back",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "emulators:start": "firebase emulators:start",
+    "emulators:start:export": "firebase emulators:start --export-on-exit=./emulator-data",
+    "emulators:import": "firebase emulators:start --import=./emulator-data"
+  },
+  "devDependencies": {
+    "firebase-tools": "^15.10.1"
+  }
+}
