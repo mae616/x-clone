@@ -4,7 +4,7 @@
  * - Tablet: Sidebar(72px) + MainContent
  * - Mobile: MainContent + BottomNavBar
  * ページ背景のウォームグロー（radial-gradient）もここで一元管理
- * @see doc/input/design/design_context.json responsive
+ * @see doc/input/design/design-context.json responsive
  */
 import { Outlet, useLocation } from 'react-router-dom'
 import { Sidebar } from './Sidebar'

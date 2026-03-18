@@ -1,7 +1,7 @@
 /**
  * アプリケーションルートコンポーネント
  * react-router-dom v7 によるルーティング設定
- * @see doc/input/design/design_context.json pages定義
+ * @see doc/input/design/design-context.json pages定義
  */
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { MainLayout } from './components/layout/MainLayout'

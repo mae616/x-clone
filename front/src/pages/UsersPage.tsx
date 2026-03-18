@@ -1,7 +1,7 @@
 /**
  * ユーザー一覧画面
  * 全ユーザーを表示し、フォロー/アンフォローのトグルが可能。
- * @see doc/input/design/design_context.json UsersPage
+ * @see doc/input/design/design-context.json UsersPage
  */
 import { UserCard } from '../components/user/UserCard'
 

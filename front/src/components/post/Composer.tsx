@@ -18,7 +18,7 @@ export function Composer() {
         <textarea
           aria-label="投稿内容"
           placeholder="いまどうしてる？"
-          className="min-h-[60px] flex-1 resize-none bg-transparent text-base leading-relaxed text-stone-50 placeholder:text-stone-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-sage-300"
+          className="min-h-[60px] flex-1 resize-none bg-transparent text-base leading-relaxed text-stone-50 placeholder:text-stone-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-sage-300 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-900"
         />
       </div>
       {/* 下段: charCount + button（右寄せ）, gap 12px */}

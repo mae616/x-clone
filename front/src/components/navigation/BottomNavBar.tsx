@@ -30,7 +30,7 @@ export function BottomNavBar({ activePath }: BottomNavBarProps) {
               <Link
                 key={tab.href}
                 to={tab.href}
-                className={`flex flex-1 flex-col items-center justify-center gap-1 rounded-[26px] focus-visible:ring-2 focus-visible:ring-sage-300 ${
+                className={`flex flex-1 flex-col items-center justify-center gap-1 rounded-[26px] focus-visible:ring-2 focus-visible:ring-sage-300 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-900 ${
                   isActive ? 'bg-sage-300' : ''
                 }`}
               >

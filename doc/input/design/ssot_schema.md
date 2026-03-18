@@ -3,7 +3,7 @@
 このドキュメントは、`/design-ssot`（Figma）や `/design-mock`（会話）で生成する **SSOT（Single Source of Truth）** の最低限の形を固定する。
 
 ## 目的
-- `doc/design/design-tokens.json` / `doc/design/components.json` / `doc/design/design_context.json` を **同じ解釈で**後続へ渡す
+- `doc/design/design-tokens.json` / `doc/design/components.json` / `doc/design/design-context.json` を **同じ解釈で**後続へ渡す
 - 後続（`/design-html` → `/design-ui` → `/design-components` → `/design-assemble`）の精度と再現性を上げる
 - 技術スタックのSSOTは **`doc/rdd.md`** とし、SSOT JSON は可能な限り **スタック非依存**に保つ
 - CSSだけでは再現できない **画像アセット**（ロゴ/アイコン/イラスト/写真等）も、可能な限りSSOTとして管理する（後続で参照できるように）
@@ -26,7 +26,7 @@
 - `PageKey` は `pages[].key` のSSOTであり、後工程（`/design-html` / `/design-ui` 等）の選択単位になる
 
 ### マージ規約（固定）
-- `design_context.json.pages` は **PageKeyごと**に保持する（ページ同士を勝手に混ぜない）
+- `design-context.json.pages` は **PageKeyごと**に保持する（ページ同士を勝手に混ぜない）
 - `copy.json` の `copyKey` は **ページキーで名前空間を切る**（例: `homePage.hero.title`）
 - `assets.json` の `assetKey` は **ページ横断で一意**にする（衝突は停止）
 
@@ -179,7 +179,7 @@ variants のキー名は「意味が通る共通語彙」に固定し、**プロ
   - `hover`, `focus`, `active`（Webの疑似クラス/標準状態として扱える場合）
 
 ### レスポンシブとvariantsの関係（固定）
-- レスポンシブ差分は、原則 **layout/context**（`design_context.json`）側で表現する。
+- レスポンシブ差分は、原則 **layout/context**（`design-context.json`）側で表現する。
 - ただし、同一コンポーネントがブレイクポイントで「別の型」になる場合は、
   - `variant` または `size` に落とす（例: `Card.size=sm|md`）
   - ルール: **propsで説明できないレイアウト差分は、コンポーネント化しない**（layout責務にする）
@@ -233,7 +233,7 @@ variants のキー名は「意味が通る共通語彙」に固定し、**プロ
 
 ---
 
-## 3) `doc/design/design_context.json`（Pages / Layout / Constraints）
+## 3) `doc/design/design-context.json`（Pages / Layout / Constraints）
 
 ### ルール
 - 画面（page）とレイアウト（frame/section）の階層を持つ
@@ -399,7 +399,7 @@ variants のキー名は「意味が通る共通語彙」に固定し、**プロ
 
 ### ルール（固定）
 - 当面の運用は `defaultLocale: "ja-JP"` を既定とする（必要になった時点で `locales` に追加して拡張する）
-- `doc/design/design_context.json` の text ノードは **必ず `copyKey` を持ち**、`doc/design/copy.json` を参照する
+- `doc/design/design-context.json` の text ノードは **必ず `copyKey` を持ち**、`doc/design/copy.json` を参照する
 - `copy.json` に存在しない `copyKey` を参照してはいけない（不足時は生成を止め、ユーザーに `FIGMA_REF` 再提示 or 文言提供を依頼する）
 - 文言は**改変しない**（空白/改行/記号も含めて一致が目的）
 

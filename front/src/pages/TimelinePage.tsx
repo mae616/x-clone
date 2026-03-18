@@ -1,7 +1,7 @@
 /**
  * タイムライン画面
  * フォロー中＋自分の投稿をcreatedAt降順で表示。投稿の作成が可能。
- * @see doc/input/design/design_context.json TimelinePage
+ * @see doc/input/design/design-context.json TimelinePage
  */
 import { Composer } from '../components/post/Composer'
 import { PostCard } from '../components/post/PostCard'

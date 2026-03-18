@@ -1,7 +1,7 @@
 /**
  * プロフィール画面
  * ユーザー情報＋フォロー数/フォロワー数＋投稿一覧を表示。
- * @see doc/input/design/design_context.json ProfilePage
+ * @see doc/input/design/design-context.json ProfilePage
  */
 import { ProfileHeader } from '../components/user/ProfileHeader'
 import { PostCard } from '../components/post/PostCard'
