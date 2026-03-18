@@ -1,146 +1,164 @@
 /**
  * タイムライン画面
  * フォロー中＋自分の投稿をcreatedAt降順で表示。投稿の作成が可能。
- * このファイルは静的UI骨格（ロジックなし）。#4でコンポーネント分割する。
+ * 静的UI骨格（ロジックなし）。#4でコンポーネント分割する。
+ * @see doc/input/design/design_context.json TimelinePage
  */
+import { Leaf, Newspaper, Users, User } from 'lucide-react'
 
 /** ダミー投稿データ（Sprint 2でFirestore接続に差し替え） */
 const DUMMY_POSTS = [
   {
     id: '1',
-    authorName: 'ひなた',
-    handle: '@hinata',
-    content: '今日は早めに帰れたので、お気に入りのカフェでゆっくり読書中。窓の外の雨音が心地いい。',
+    authorName: 'さくら',
+    handle: '@sakura',
+    content:
+      '今日も一日お疲れさまでした。夜風が気持ちいい季節になりましたね。窓を開けて深呼吸すると、少しだけ心が軽くなる気がします。',
     timestamp: '2時間前',
+    avatarColor: 'bg-honey-muted',
   },
   {
     id: '2',
-    authorName: 'さくら',
-    handle: '@sakura',
-    content: '新しいお茶を見つけました。ほうじ茶ラテ、寒い夜にぴったり。',
+    authorName: 'はると',
+    handle: '@haruto',
+    content:
+      '近所のカフェで見つけた新しいブレンド、すごく美味しかった。明日も行こうかな。',
     timestamp: '4時間前',
+    avatarColor: 'bg-sage-muted',
   },
   {
     id: '3',
-    authorName: 'そら',
-    handle: '@sora',
-    content: '夕焼けがきれいだったので思わず立ち止まってしまった。こういう瞬間を大切にしたい。',
+    authorName: 'ゆき',
+    handle: '@yuki',
+    content:
+      '読みかけの本をやっと読み終えた。静かな夜に読書するのが最高の贅沢。',
     timestamp: '6時間前',
+    avatarColor: 'bg-danger-muted',
   },
 ]
 
 export default function TimelinePage() {
   return (
-    <div className="flex min-h-svh">
-      {/* サイドバー */}
+    <div
+      className="flex min-h-svh bg-stone-900"
+      style={{
+        background:
+          '#1C1917 radial-gradient(ellipse at 55% 30%, rgba(212,165,116,0.06) 0%, transparent 100%)',
+      }}
+    >
+      {/* サイドバー: glass.sidebar + gradient overlay + backdrop-blur 16px */}
       <nav
         role="navigation"
-        className="sticky top-0 flex h-svh w-[280px] shrink-0 flex-col border-r border-stone-800 bg-stone-800/50 p-8 backdrop-blur-[16px]"
+        className="sticky top-0 flex h-svh w-[280px] shrink-0 flex-col border-r border-glass-border backdrop-blur-[16px]"
+        style={{
+          background:
+            '#FFFFFF08 linear-gradient(180deg, rgba(212,165,116,0.03) 0%, #1C1917 100%)',
+        }}
       >
-        {/* ロゴ */}
-        <div className="mb-8 text-xl font-bold text-stone-50">ほっとSNS</div>
-
-        {/* ナビゲーション */}
-        <ul className="flex flex-col gap-1">
-          <li>
-            <a
-              href="/"
-              className="flex items-center gap-3 rounded-md bg-stone-800 px-4 py-3 text-base font-medium text-stone-50"
-            >
-              <span className="text-sage-300">🏠</span>
-              タイムライン
-            </a>
-          </li>
-          <li>
-            <a
-              href="/users"
-              className="flex items-center gap-3 rounded-md px-4 py-3 text-base text-stone-400 hover:bg-stone-800"
-            >
-              <span>👥</span>
-              ユーザー一覧
-            </a>
-          </li>
-          <li>
-            <a
-              href="/profile/1"
-              className="flex items-center gap-3 rounded-md px-4 py-3 text-base text-stone-400 hover:bg-stone-800"
-            >
-              <span>👤</span>
-              プロフィール
-            </a>
-          </li>
-        </ul>
-
-        {/* 現在のユーザー */}
-        <div className="mt-auto flex items-center gap-3 rounded-lg border border-stone-700 p-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sage-300 text-sm font-bold text-stone-900">
-            さ
+        <div className="flex flex-1 flex-col px-6 py-8">
+          {/* ロゴ: lucide leaf + テキスト */}
+          <div className="flex items-center gap-3 pb-6">
+            <Leaf className="h-7 w-7 text-sage-300" />
+            <span className="text-xl font-bold text-stone-50">ほっとSNS</span>
           </div>
-          <div>
-            <div className="text-sm font-medium text-stone-50">さくら</div>
-            <div className="text-xs text-stone-400">@sakura</div>
+
+          {/* ナビゲーション: gap 4px, cornerRadius 12px, padding 12px 16px */}
+          <ul className="flex flex-col gap-1">
+            <li>
+              <a
+                href="/"
+                className="flex items-center gap-3 rounded-md bg-nav-active px-4 py-3 text-base font-semibold text-stone-50"
+              >
+                <Newspaper className="h-5 w-5 text-sage-300" />
+                タイムライン
+              </a>
+            </li>
+            <li>
+              <a
+                href="/users"
+                className="flex items-center gap-3 rounded-md px-4 py-3 text-base font-medium text-stone-400"
+              >
+                <Users className="h-5 w-5 text-stone-400" />
+                ユーザー一覧
+              </a>
+            </li>
+            <li>
+              <a
+                href="/profile/1"
+                className="flex items-center gap-3 rounded-md px-4 py-3 text-base font-medium text-stone-400"
+              >
+                <User className="h-5 w-5 text-stone-400" />
+                プロフィール
+              </a>
+            </li>
+          </ul>
+
+          {/* スペーサー */}
+          <div className="flex-1" />
+
+          {/* 現在のユーザー: border-top #2E2A25, gap 12px */}
+          <div className="flex items-center gap-3 border-t border-border-subtle pt-4">
+            <div className="h-10 w-10 rounded-full bg-sage-muted" />
+            <div className="flex flex-col gap-0.5">
+              <span className="text-md font-semibold text-stone-50">
+                さくら
+              </span>
+              <span className="text-xs text-stone-500">@sakura</span>
+            </div>
           </div>
         </div>
       </nav>
 
-      {/* メインコンテンツ */}
-      <main className="flex flex-1 flex-col gap-6 p-8">
-        {/* ページ背景のウォームグロー */}
-        <div
-          className="pointer-events-none fixed inset-0"
-          style={{
-            background:
-              'radial-gradient(ellipse at 55% 30%, rgba(212,165,116,0.06) 0%, transparent 100%)',
-          }}
-        />
+      {/* メインコンテンツ: padding 32px 48px, gap 24px, clip */}
+      <main className="flex flex-1 flex-col gap-6 overflow-hidden px-12 py-8">
+        <h1 className="text-3xl font-bold text-stone-50">タイムライン</h1>
 
-        <h1 className="relative text-3xl font-bold text-stone-50">
-          タイムライン
-        </h1>
-
-        {/* コンポーザー */}
+        {/* コンポーザー: vertical, gap 16px, padding 20px, cornerRadius 16px */}
         <form
           role="form"
           aria-label="投稿を作成"
-          className="relative flex gap-4 rounded-lg border border-stone-800 bg-white/5 p-5 shadow-card backdrop-blur-[12px]"
+          className="flex flex-col gap-4 rounded-lg border border-glass-border bg-glass-card p-5 backdrop-blur-[12px]"
         >
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sage-300 text-sm font-bold text-stone-900">
-            さ
-          </div>
-          <div className="flex flex-1 flex-col gap-3">
+          {/* 上段: avatar + input */}
+          <div className="flex gap-3">
+            <div className="h-10 w-10 shrink-0 rounded-full bg-sage-muted" />
             <textarea
               placeholder="いまどうしてる？"
-              className="min-h-[80px] resize-none bg-transparent text-base text-stone-50 placeholder:text-stone-500 focus:outline-none"
+              className="min-h-[60px] flex-1 resize-none bg-transparent text-base leading-relaxed text-stone-50 placeholder:text-stone-500 focus:outline-none"
             />
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-stone-500">0/140</span>
-              <button
-                type="button"
-                className="rounded-full bg-gradient-to-br from-sage-300 to-sage-500 px-5 py-2 text-sm font-semibold text-stone-900 shadow-glow-accent transition-shadow hover:shadow-glow-accent"
-              >
-                投稿する
-              </button>
-            </div>
+          </div>
+          {/* 下段: charCount + button（右寄せ） */}
+          <div className="flex items-center justify-end gap-3">
+            <span className="text-xs text-stone-500">0/140</span>
+            <button
+              type="button"
+              className="rounded-full px-6 py-2.5 text-md font-semibold text-stone-900 shadow-glow-accent"
+              style={{
+                background: 'linear-gradient(135deg, #8BAA7F 0%, #A8D4A0 100%)',
+              }}
+            >
+              投稿する
+            </button>
           </div>
         </form>
 
-        {/* 投稿フィード */}
-        <div className="relative flex flex-col gap-3">
+        {/* 投稿フィード: gap 12px */}
+        <div className="flex flex-col gap-3">
           {DUMMY_POSTS.map((post) => (
             <article
               key={post.id}
-              className="flex gap-3 rounded-lg border border-stone-800 bg-white/5 p-5 shadow-card backdrop-blur-[12px]"
+              className="flex gap-3 rounded-lg border border-glass-border bg-glass-card p-5 backdrop-blur-[12px]"
             >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-stone-700 text-sm font-medium text-stone-50">
-                {post.authorName[0]}
-              </div>
-              <div className="flex flex-col gap-1">
+              <div
+                className={`h-10 w-10 shrink-0 rounded-full ${post.avatarColor}`}
+              />
+              <div className="flex flex-col gap-2">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-semibold text-stone-50">
+                  <span className="text-base font-semibold text-stone-50">
                     {post.authorName}
                   </span>
                   <span className="text-sm text-stone-500">{post.handle}</span>
-                  <span className="text-xs text-stone-500">
+                  <span className="text-sm text-stone-500">
                     · {post.timestamp}
                   </span>
                 </div>

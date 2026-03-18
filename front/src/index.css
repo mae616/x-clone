@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* デザイントークン: design-tokens.json から変換 */
+/* デザイントークン: design-tokens.json v2 から変換 */
 @theme {
   /* カラー: Stone系（ダーク背景） */
   --color-stone-50: #FAFAF9;
@@ -21,9 +21,21 @@
   --color-honey-muted: #D4A57426;
   --color-honey-glow: #D4A57410;
 
+  /* カラー: Glass系（グラスモーフィズム） */
+  --color-glass-sidebar: #FFFFFF08;
+  --color-glass-card: #FFFFFF0D;
+  --color-glass-border: #FFFFFF0F;
+
+  /* カラー: ナビゲーション */
+  --color-nav-active: #33302C;
+
+  /* カラー: ボーダー */
+  --color-border-subtle: #2E2A25;
+
   /* カラー: 危険・情報 */
   --color-danger-300: #F0A0A0;
   --color-danger-muted: #F0A0A026;
+  --color-blue-muted: #5B9BD526;
 
   /* フォント */
   --font-primary: "Noto Sans JP", system-ui, sans-serif;

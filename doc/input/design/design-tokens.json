@@ -1,5 +1,5 @@
 {
-  "meta": { "version": 1 },
+  "meta": { "version": 2, "source": "Pencil MCP x-clone-mvp.pen", "updated": "2026-03-18" },
   "primitives": {
     "color": {
       "stone": {
@@ -22,6 +22,7 @@
         "glow": "#D4A57410"
       },
       "glass": {
+        "sidebar": "#FFFFFF08",
         "card": "#FFFFFF0D",
         "border": "#FFFFFF0F"
       },
@@ -31,7 +32,8 @@
       },
       "blue": {
         "muted": "#5B9BD526"
-      }
+      },
+      "navActive": "#33302C"
     },
     "border": {
       "width": { "0": "0px", "1": "1px" },
@@ -85,11 +87,14 @@
     "shadow": {
       "card": "0 2px 8px rgba(0,0,0,0.12)",
       "glowAccent": "0 2px 12px rgba(139,170,127,0.19)",
-      "glowAccentSubtle": "0 1px 8px rgba(139,170,127,0.09)"
+      "glowAccentSubtle": "0 1px 8px rgba(139,170,127,0.09)",
+      "glowAccentButton": "0 2px 12px rgba(139,170,127,0.19)",
+      "glowOutlineSubtle": "0 1px 8px rgba(139,170,127,0.09)"
     },
     "gradient": {
       "accentButton": "linear-gradient(135deg, #8BAA7F 0%, #A8D4A0 100%)",
-      "warmGlow": "radial-gradient(ellipse at 55% 30%, rgba(212,165,116,0.06) 0%, transparent 100%)"
+      "warmGlow": "radial-gradient(ellipse at 55% 30%, rgba(212,165,116,0.06) 0%, transparent 100%)",
+      "sidebarWarmOverlay": "linear-gradient(180deg, rgba(212,165,116,0.03) 0%, #1C1917 100%)"
     },
     "blur": {
       "glass": "12px",
@@ -100,6 +105,19 @@
       "md": "768px",
       "lg": "1024px",
       "xl": "1440px"
+    },
+    "icon": {
+      "family": "lucide",
+      "size": {
+        "nav": "20px",
+        "logo": "28px"
+      },
+      "names": {
+        "logo": "leaf",
+        "timeline": "newspaper",
+        "users": "users",
+        "profile": "user"
+      }
     }
   },
   "semantic": {
@@ -113,18 +131,20 @@
         "page": { "ref": "primitives.color.stone.900" },
         "card": { "ref": "primitives.color.stone.800" },
         "cardGlass": { "ref": "primitives.color.glass.card", "note": "グラスモーフィズム用。backdrop-blur併用" },
+        "sidebarGlass": { "ref": "primitives.color.glass.sidebar", "note": "サイドバー背景。backdrop-blur+gradient併用" },
         "elevated": { "ref": "primitives.color.stone.700" },
-        "hover": { "ref": "primitives.color.stone.800", "note": "#33302C は実装時に微調整可" }
+        "navActive": { "ref": "primitives.color.navActive", "note": "#33302C ナビゲーションのactive背景" }
       },
       "surfaceEffect": {
         "pageGlow": { "ref": "primitives.gradient.warmGlow", "note": "ページ背景のラジアルグロー" },
+        "sidebarOverlay": { "ref": "primitives.gradient.sidebarWarmOverlay", "note": "サイドバーの暖色グラデーションオーバーレイ" },
         "cardBlur": { "ref": "primitives.blur.glass", "note": "カードのbackdrop-blur" },
         "sidebarBlur": { "ref": "primitives.blur.glassSidebar", "note": "サイドバーのbackdrop-blur" }
       },
       "border": {
-        "default": { "ref": "primitives.color.stone.700", "note": "#3D3730 実装時に微調整可" },
-        "subtle": { "ref": "primitives.color.stone.800", "note": "#2E2A25 実装時に微調整可" },
-        "glass": { "ref": "primitives.color.glass.border", "note": "グラスカード用の極薄白ボーダー" }
+        "default": { "ref": "primitives.color.stone.700" },
+        "subtle": { "value": "#2E2A25", "note": "CurrentUser上部ボーダー・ProfileStats上部ボーダー" },
+        "glass": { "ref": "primitives.color.glass.border", "note": "グラスカード・サイドバー用の極薄白ボーダー" }
       },
       "accent": {
         "primary": { "ref": "primitives.color.sage.300" },
@@ -145,15 +165,17 @@
       }
     },
     "space": {
-      "page": { "ref": "primitives.space.8" },
-      "section": { "ref": "primitives.space.6" },
-      "card": { "ref": "primitives.space.5" },
-      "element": { "ref": "primitives.space.4" }
+      "page": { "ref": "primitives.space.8", "note": "32px" },
+      "pageHorizontal": { "ref": "primitives.space.12", "note": "48px メインコンテンツの左右パディング" },
+      "section": { "ref": "primitives.space.6", "note": "24px" },
+      "card": { "ref": "primitives.space.5", "note": "20px" },
+      "element": { "ref": "primitives.space.4", "note": "16px" },
+      "cardGap": { "ref": "primitives.space.3", "note": "12px カード間の隙間" }
     },
     "radius": {
-      "card": { "ref": "primitives.radius.lg" },
-      "button": { "ref": "primitives.radius.full" },
-      "nav": { "ref": "primitives.radius.md" }
+      "card": { "ref": "primitives.radius.lg", "note": "16px" },
+      "button": { "ref": "primitives.radius.full", "note": "999px" },
+      "nav": { "ref": "primitives.radius.md", "note": "12px" }
     }
   }
 }
