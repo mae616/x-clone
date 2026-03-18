@@ -155,7 +155,7 @@
       "text": {
         "primary": { "ref": "primitives.color.stone.50" },
         "secondary": { "ref": "primitives.color.stone.400" },
-        "tertiary": { "ref": "primitives.color.stone.500" }
+        "tertiary": { "ref": "primitives.color.stone.400", "note": "stone.500(#78716C)はコントラスト比3.5:1で4.5:1未達のためstone.400(#A8A29E≈5.6:1)に引き上げ" }
       },
       "surface": {
         "page": { "ref": "primitives.color.stone.900" },

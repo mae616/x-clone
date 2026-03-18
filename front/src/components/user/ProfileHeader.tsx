@@ -41,7 +41,7 @@ export function ProfileHeader({
         <div className={`h-16 w-16 shrink-0 rounded-full ${avatarColor}`} />
         <div className="flex flex-1 flex-col gap-0.5">
           <h1 className="text-xl font-bold text-stone-50">{name}</h1>
-          <span className="text-sm text-stone-500">{handle}</span>
+          <span className="text-sm text-stone-400">{handle}</span>
         </div>
         <Button tone={isFollowing ? 'outline' : 'primary'} size="md">
           {isFollowing ? 'フォロー中' : 'フォロー'}

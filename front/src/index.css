@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* デザイントークン: design-tokens.json v2 から変換 */
+/* デザイントークン: design-tokens.json v3 から変換 */
 @theme {
   /* カラー: Stone系（ダーク背景） */
   --color-stone-50: #FAFAF9;

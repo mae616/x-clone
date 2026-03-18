@@ -112,7 +112,7 @@
         "body": {
           "layout": "vertical",
           "gapRef": "primitives.space.2",
-          "note": "gap: 8px between header and content"
+          "note": "gap: 8px ヘッダーとコンテンツの間隔"
         },
         "header": {
           "layout": "horizontal",

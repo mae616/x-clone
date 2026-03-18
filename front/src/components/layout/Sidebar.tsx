@@ -5,26 +5,9 @@
  * - Mobile (<768px): 非表示（BottomNavBarに委譲）
  * @see doc/input/design/components.json Sidebar, TabletSidebar
  */
-import { Link } from 'react-router-dom'
-import { Leaf, Newspaper, Users, User, type LucideIcon } from 'lucide-react'
-
-const ICON_MAP: Record<string, LucideIcon> = {
-  newspaper: Newspaper,
-  users: Users,
-  user: User,
-}
-
-interface NavDef {
-  icon: string
-  label: string
-  href: string
-}
-
-const NAV_ITEMS: NavDef[] = [
-  { icon: 'newspaper', label: 'タイムライン', href: '/' },
-  { icon: 'users', label: 'ユーザー一覧', href: '/users' },
-  { icon: 'user', label: 'プロフィール', href: '/profile/1' },
-]
+import { Leaf } from 'lucide-react'
+import { NAV_ITEMS } from '../../lib/navigation'
+import { NavItem } from '../navigation/NavItem'
 
 interface SidebarProps {
   /** 現在のアクティブなパス */
@@ -51,38 +34,18 @@ export function Sidebar({ activePath }: SidebarProps) {
           </span>
         </div>
 
-        {/* ナビゲーション */}
+        {/* ナビゲーション: NavItemコンポーネントに委譲 */}
         <ul className="flex flex-col gap-1">
-          {NAV_ITEMS.map((item) => {
-            const Icon = ICON_MAP[item.icon]
-            const isActive = activePath === item.href
-
-            return (
-              <li key={item.href}>
-                {/* タブレット: アイコンのみ 48x48 */}
-                <Link
-                  to={item.href}
-                  className={`flex items-center justify-center gap-3 rounded-md lg:justify-start lg:px-4 lg:py-3 ${
-                    isActive
-                      ? 'bg-nav-active font-semibold text-stone-50'
-                      : 'font-medium text-stone-400'
-                  }`}
-                >
-                  {/* タブレット: 48x48ボタン、デスクトップ: インラインアイコン */}
-                  <span className="flex h-12 w-12 items-center justify-center rounded-md lg:h-auto lg:w-auto">
-                    {Icon && (
-                      <Icon
-                        className={`h-[22px] w-[22px] lg:h-5 lg:w-5 ${
-                          isActive ? 'text-sage-300' : 'text-stone-400'
-                        }`}
-                      />
-                    )}
-                  </span>
-                  <span className="hidden lg:inline">{item.label}</span>
-                </Link>
-              </li>
-            )
-          })}
+          {NAV_ITEMS.map((item) => (
+            <li key={item.href}>
+              <NavItem
+                icon={item.icon}
+                label={item.label}
+                href={item.href}
+                state={activePath === item.href ? 'active' : 'default'}
+              />
+            </li>
+          ))}
         </ul>
 
         {/* スペーサー */}
@@ -93,7 +56,7 @@ export function Sidebar({ activePath }: SidebarProps) {
           <div className="h-9 w-9 rounded-full bg-sage-muted lg:h-10 lg:w-10" />
           <div className="hidden flex-col gap-0.5 lg:flex">
             <span className="text-md font-semibold text-stone-50">さくら</span>
-            <span className="text-xs text-stone-500">@sakura</span>
+            <span className="text-xs text-stone-400">@sakura</span>
           </div>
         </div>
       </div>

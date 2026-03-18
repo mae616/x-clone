@@ -34,8 +34,8 @@ export function PostCard({
           <span className="text-base font-semibold text-stone-50">
             {authorName}
           </span>
-          <span className="text-sm text-stone-500">{handle}</span>
-          <span className="text-sm text-stone-500">· {timestamp}</span>
+          <span className="text-sm text-stone-400">{handle}</span>
+          <span className="text-sm text-stone-400">· {timestamp}</span>
         </div>
         <p className="text-base leading-relaxed text-stone-50">{content}</p>
       </div>

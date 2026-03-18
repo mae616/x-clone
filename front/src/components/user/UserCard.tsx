@@ -29,7 +29,7 @@ export function UserCard({
       {/* ユーザー情報: gap 4px */}
       <div className="flex flex-1 flex-col gap-1">
         <span className="text-base font-semibold text-stone-50">{name}</span>
-        <span className="text-sm text-stone-500">{handle}</span>
+        <span className="text-sm text-stone-400">{handle}</span>
       </div>
       <Button tone={isFollowing ? 'outline' : 'primary'} size="sm">
         {isFollowing ? 'フォロー中' : 'フォロー'}

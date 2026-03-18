@@ -4,25 +4,7 @@
  * @see doc/input/design/components.json BottomNavBar
  */
 import { Link } from 'react-router-dom'
-import { Newspaper, Users, User, type LucideIcon } from 'lucide-react'
-
-const ICON_MAP: Record<string, LucideIcon> = {
-  newspaper: Newspaper,
-  users: Users,
-  user: User,
-}
-
-interface TabItem {
-  icon: string
-  label: string
-  href: string
-}
-
-const TABS: TabItem[] = [
-  { icon: 'newspaper', label: 'タイムライン', href: '/' },
-  { icon: 'users', label: 'ユーザー', href: '/users' },
-  { icon: 'user', label: 'プロフィール', href: '/profile/1' },
-]
+import { ICON_MAP, NAV_ITEMS } from '../../lib/navigation'
 
 interface BottomNavBarProps {
   /** 現在のアクティブなパス */
@@ -33,14 +15,14 @@ export function BottomNavBar({ activePath }: BottomNavBarProps) {
   return (
     <nav
       role="navigation"
-      aria-label="メインナビゲーション"
+      aria-label="モバイルナビゲーション"
       className="block md:hidden"
     >
       {/* コンテナ: padding 12px 21px 21px 21px */}
       <div className="px-[21px] pb-[21px] pt-3">
         {/* pill: height 62px, cornerRadius 36px, padding 4px */}
         <div className="flex h-[62px] items-stretch rounded-[36px] border border-glass-border bg-stone-800 p-1 backdrop-blur-[12px]">
-          {TABS.map((tab) => {
+          {NAV_ITEMS.map((tab) => {
             const Icon = ICON_MAP[tab.icon]
             const isActive = activePath === tab.href
 
@@ -48,7 +30,7 @@ export function BottomNavBar({ activePath }: BottomNavBarProps) {
               <Link
                 key={tab.href}
                 to={tab.href}
-                className={`flex flex-1 flex-col items-center justify-center gap-1 rounded-[26px] ${
+                className={`flex flex-1 flex-col items-center justify-center gap-1 rounded-[26px] focus-visible:ring-2 focus-visible:ring-sage-300 ${
                   isActive ? 'bg-sage-300' : ''
                 }`}
               >
@@ -66,7 +48,7 @@ export function BottomNavBar({ activePath }: BottomNavBarProps) {
                       : 'font-medium text-stone-400'
                   }`}
                 >
-                  {tab.label}
+                  {tab.mobileLabel}
                 </span>
               </Link>
             )
