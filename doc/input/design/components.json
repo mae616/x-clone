@@ -1,5 +1,5 @@
 {
-  "meta": { "version": 1 },
+  "meta": { "version": 3, "source": "Pencil MCP x-clone-mvp.pen", "updated": "2026-03-18", "note": "v3: BottomNavBar/TabletSidebar追加" },
   "components": [
     {
       "name": "Sidebar",
@@ -8,16 +8,43 @@
       "defaults": {},
       "slots": ["logo", "navigation", "currentUser"],
       "styles": {
-        "backgroundColorRef": "semantic.color.surface.card",
-        "border": {
-          "colorRef": "semantic.color.border.subtle",
+        "fillRef": "semantic.color.surface.sidebarGlass",
+        "fillOverlay": {
+          "type": "gradient",
+          "ref": "primitives.gradient.sidebarWarmOverlay",
+          "note": "サイドバー背景に暖色グラデーションオーバーレイを重ねる"
+        },
+        "effectRef": "semantic.color.surfaceEffect.sidebarBlur",
+        "stroke": {
+          "colorRef": "semantic.color.border.glass",
           "widthRef": "primitives.border.width.1",
           "styleRef": "primitives.border.style.solid",
           "alignRef": "primitives.border.align.inside",
           "sides": ["right"]
         },
         "width": "280px",
-        "paddingRef": "primitives.space.8"
+        "paddingRef": ["primitives.space.8", "primitives.space.6"],
+        "note": "padding: 32px 24px。backdrop-blur: 16px"
+      },
+      "children": {
+        "logoArea": {
+          "layout": "horizontal",
+          "alignItems": "center",
+          "gapRef": "primitives.space.3",
+          "paddingBottom": "primitives.space.6",
+          "icon": { "family": "lucide", "name": "leaf", "size": "28px", "colorRef": "semantic.color.accent.primary" },
+          "text": { "content": "copyKey:app.name", "fontSizeRef": "primitives.font.size.xl", "fontWeightRef": "primitives.font.weight.bold", "colorRef": "semantic.color.text.primary" }
+        },
+        "currentUser": {
+          "layout": "horizontal",
+          "alignItems": "center",
+          "gapRef": "primitives.space.3",
+          "paddingTop": "primitives.space.4",
+          "borderTop": { "colorRef": "semantic.color.border.subtle", "widthRef": "primitives.border.width.1" },
+          "avatar": { "size": "40px", "fillRef": "semantic.color.accent.muted", "shape": "ellipse" },
+          "name": { "fontSizeRef": "primitives.font.size.md", "fontWeightRef": "primitives.font.weight.semibold", "colorRef": "semantic.color.text.primary" },
+          "handle": { "fontSizeRef": "primitives.font.size.xs", "fontWeightRef": "primitives.font.weight.regular", "colorRef": "semantic.color.text.tertiary" }
+        }
       },
       "a11y": {
         "role": "navigation",
@@ -26,26 +53,34 @@
     },
     {
       "name": "NavItem",
-      "description": "サイドバー内のナビゲーション項目。アイコン＋ラベル",
+      "description": "サイドバー内のナビゲーション項目。Lucideアイコン＋ラベル",
       "variants": {
         "state": ["default", "active"]
       },
       "defaults": { "state": "default" },
       "slots": ["icon", "label"],
       "styles": {
+        "layout": "horizontal",
+        "alignItems": "center",
+        "gapRef": "primitives.space.3",
+        "radiusRef": "semantic.radius.nav",
+        "paddingRef": ["primitives.space.3", "primitives.space.4"],
+        "note": "padding: 12px 16px, cornerRadius: 12px, gap: 12px",
         "state:default": {
           "backgroundColorRef": "transparent",
           "textColorRef": "semantic.color.text.secondary",
+          "textFontWeightRef": "primitives.font.weight.medium",
           "iconColorRef": "semantic.color.text.secondary"
         },
         "state:active": {
-          "backgroundColorRef": "semantic.color.surface.hover",
+          "backgroundColorRef": "semantic.color.surface.navActive",
           "textColorRef": "semantic.color.text.primary",
+          "textFontWeightRef": "primitives.font.weight.semibold",
           "iconColorRef": "semantic.color.accent.primary"
         },
-        "radiusRef": "semantic.radius.nav",
-        "paddingRef": ["primitives.space.3", "primitives.space.4"],
-        "gapRef": "primitives.space.3"
+        "textFontSizeRef": "primitives.font.size.base",
+        "iconSize": "20px",
+        "iconFamily": "lucide"
       },
       "a11y": {
         "role": "link",
@@ -55,21 +90,44 @@
     },
     {
       "name": "PostCard",
-      "description": "投稿カード。アバター＋ユーザー情報＋投稿内容を表示",
+      "description": "投稿カード。アバター（ellipse）＋投稿本文（ヘッダー＋コンテンツ）を横並び",
       "variants": {},
       "defaults": {},
       "slots": ["avatar", "authorName", "handle", "timestamp", "content"],
       "styles": {
-        "backgroundColorRef": "semantic.color.surface.card",
-        "border": {
-          "colorRef": "semantic.color.border.subtle",
+        "layout": "horizontal",
+        "fillRef": "semantic.color.surface.cardGlass",
+        "effectRef": "semantic.color.surfaceEffect.cardBlur",
+        "stroke": {
+          "colorRef": "semantic.color.border.glass",
           "widthRef": "primitives.border.width.1",
           "styleRef": "primitives.border.style.solid",
           "alignRef": "primitives.border.align.inside"
         },
         "radiusRef": "semantic.radius.card",
         "paddingRef": "primitives.space.5",
-        "gapRef": "primitives.space.3"
+        "gapRef": "primitives.space.3",
+        "note": "padding: 20px, gap: 12px, cornerRadius: 16px, backdrop-blur: 12px",
+        "avatar": { "size": "40px", "shape": "ellipse" },
+        "body": {
+          "layout": "vertical",
+          "gapRef": "primitives.space.2",
+          "note": "gap: 8px ヘッダーとコンテンツの間隔"
+        },
+        "header": {
+          "layout": "horizontal",
+          "alignItems": "center",
+          "gapRef": "primitives.space.2",
+          "authorName": { "fontSizeRef": "primitives.font.size.base", "fontWeightRef": "primitives.font.weight.semibold", "colorRef": "semantic.color.text.primary" },
+          "handle": { "fontSizeRef": "primitives.font.size.sm", "colorRef": "semantic.color.text.tertiary" },
+          "timestamp": { "fontSizeRef": "primitives.font.size.sm", "colorRef": "semantic.color.text.tertiary" }
+        },
+        "content": {
+          "fontSizeRef": "primitives.font.size.base",
+          "fontWeightRef": "primitives.font.weight.regular",
+          "lineHeightRef": "primitives.font.lineHeight.relaxed",
+          "colorRef": "semantic.color.text.primary"
+        }
       },
       "a11y": {
         "role": "article",
@@ -78,21 +136,32 @@
     },
     {
       "name": "UserCard",
-      "description": "ユーザー一覧カード。アバター＋名前＋ハンドル＋フォローボタン",
+      "description": "ユーザー一覧カード。アバター（48px ellipse）＋名前＋ハンドル＋フォローボタン",
       "variants": {},
       "defaults": {},
       "slots": ["avatar", "name", "handle", "followButton"],
       "styles": {
-        "backgroundColorRef": "semantic.color.surface.card",
-        "border": {
-          "colorRef": "semantic.color.border.subtle",
+        "layout": "horizontal",
+        "alignItems": "center",
+        "fillRef": "semantic.color.surface.cardGlass",
+        "effectRef": "semantic.color.surfaceEffect.cardBlur",
+        "stroke": {
+          "colorRef": "semantic.color.border.glass",
           "widthRef": "primitives.border.width.1",
           "styleRef": "primitives.border.style.solid",
           "alignRef": "primitives.border.align.inside"
         },
         "radiusRef": "semantic.radius.card",
         "paddingRef": "primitives.space.5",
-        "gapRef": "primitives.space.4"
+        "gapRef": "primitives.space.4",
+        "note": "padding: 20px, gap: 16px, cornerRadius: 16px, backdrop-blur: 12px",
+        "avatar": { "size": "48px", "shape": "ellipse" },
+        "info": {
+          "layout": "vertical",
+          "gapRef": "primitives.space.1",
+          "name": { "fontSizeRef": "primitives.font.size.base", "fontWeightRef": "primitives.font.weight.semibold", "colorRef": "semantic.color.text.primary" },
+          "handle": { "fontSizeRef": "primitives.font.size.sm", "colorRef": "semantic.color.text.tertiary" }
+        }
       },
       "a11y": {
         "role": "article",
@@ -111,18 +180,28 @@
       "slots": ["label"],
       "styles": {
         "tone:primary": {
-          "backgroundColorRef": "semantic.color.accent.primary",
-          "textColorRef": "semantic.color.accent.onAccent"
+          "fillRef": "semantic.color.accent.buttonGradient",
+          "textColorRef": "semantic.color.accent.onAccent",
+          "effectRef": "semantic.color.accent.glowShadow",
+          "note": "gradient: 135deg #8BAA7F→#A8D4A0, shadow: 0 2px 12px rgba(139,170,127,0.19)"
         },
         "tone:outline": {
-          "backgroundColorRef": "transparent",
+          "fillRef": "transparent",
           "textColorRef": "semantic.color.accent.primary",
-          "border": {
-            "colorRef": "semantic.color.accent.primary",
+          "stroke": {
+            "type": "gradient",
+            "colorStart": "primitives.color.sage.300",
+            "colorEnd": "primitives.color.sage.500",
+            "rotation": "135deg",
             "widthRef": "primitives.border.width.1"
-          }
+          },
+          "effectRef": "primitives.shadow.glowAccentSubtle",
+          "note": "ボーダーがグラデーション。shadow: 0 1px 8px rgba(139,170,127,0.09)"
         },
-        "radiusRef": "semantic.radius.button"
+        "size:sm": { "paddingRef": ["primitives.space.2", "primitives.space.5"], "fontSizeRef": "primitives.font.size.sm", "note": "padding: 8px 20px" },
+        "size:md": { "paddingRef": ["primitives.space.3-minus2", "primitives.space.6"], "fontSizeRef": "primitives.font.size.md", "note": "padding: 10px 24px" },
+        "radiusRef": "semantic.radius.button",
+        "textFontWeightRef": "primitives.font.weight.semibold"
       },
       "a11y": {
         "role": "button",
@@ -132,21 +211,35 @@
     },
     {
       "name": "Composer",
-      "description": "投稿入力エリア。アバター＋テキスト入力＋文字数カウント＋投稿ボタン",
+      "description": "投稿入力エリア。アバター＋テキスト入力（上段）＋文字数カウント＋投稿ボタン（下段）",
       "variants": {},
       "defaults": {},
       "slots": ["avatar", "input", "charCount", "submitButton"],
       "styles": {
-        "backgroundColorRef": "semantic.color.surface.card",
-        "border": {
-          "colorRef": "semantic.color.border.subtle",
+        "layout": "vertical",
+        "fillRef": "semantic.color.surface.cardGlass",
+        "effectRef": "semantic.color.surfaceEffect.cardBlur",
+        "stroke": {
+          "colorRef": "semantic.color.border.glass",
           "widthRef": "primitives.border.width.1",
           "styleRef": "primitives.border.style.solid",
           "alignRef": "primitives.border.align.inside"
         },
         "radiusRef": "semantic.radius.card",
         "paddingRef": "primitives.space.5",
-        "gapRef": "primitives.space.4"
+        "gapRef": "primitives.space.4",
+        "note": "padding: 20px, gap: 16px, cornerRadius: 16px. 2段構成: top(avatar+input) / bottom(charCount+button)",
+        "top": {
+          "layout": "horizontal",
+          "gapRef": "primitives.space.3",
+          "avatar": { "size": "40px", "shape": "ellipse", "fillRef": "semantic.color.accent.muted" }
+        },
+        "bottom": {
+          "layout": "horizontal",
+          "justifyContent": "end",
+          "alignItems": "center",
+          "gapRef": "primitives.space.3"
+        }
       },
       "a11y": {
         "role": "form",
@@ -156,24 +249,137 @@
     },
     {
       "name": "ProfileHeader",
-      "description": "プロフィール画面のヘッダー。アバター＋名前＋ハンドル＋フォローボタン＋フォロー数/フォロワー数",
+      "description": "プロフィール画面のヘッダー。アバター＋名前＋ハンドル＋bio＋フォローボタン＋フォロー数/フォロワー数",
       "variants": {},
       "defaults": {},
-      "slots": ["avatar", "name", "handle", "followButton", "followingCount", "followersCount"],
+      "slots": ["avatar", "name", "handle", "bio", "followButton", "followingCount", "followersCount"],
       "styles": {
-        "backgroundColorRef": "semantic.color.surface.card",
-        "border": {
-          "colorRef": "semantic.color.border.subtle",
+        "layout": "vertical",
+        "fillRef": "semantic.color.surface.cardGlass",
+        "effectRef": "semantic.color.surfaceEffect.cardBlur",
+        "stroke": {
+          "colorRef": "semantic.color.border.glass",
           "widthRef": "primitives.border.width.1",
           "styleRef": "primitives.border.style.solid",
           "alignRef": "primitives.border.align.inside"
         },
         "radiusRef": "semantic.radius.card",
-        "paddingRef": "primitives.space.6",
-        "gapRef": "primitives.space.5"
+        "paddingRef": ["primitives.space.6", "primitives.space.6", "primitives.space.5", "primitives.space.6"],
+        "gapRef": "primitives.space.4",
+        "note": "padding: 24px 24px 20px 24px, gap: 16px, cornerRadius: 16px",
+        "top": {
+          "layout": "horizontal",
+          "gapRef": "primitives.space.4",
+          "avatar": { "size": "64px", "shape": "ellipse" },
+          "info": {
+            "layout": "vertical",
+            "gapRef": "primitives.space.0-half",
+            "name": { "fontSizeRef": "primitives.font.size.xl", "fontWeightRef": "primitives.font.weight.bold", "colorRef": "semantic.color.text.primary" },
+            "handle": { "fontSizeRef": "primitives.font.size.sm", "colorRef": "semantic.color.text.tertiary" }
+          }
+        },
+        "bio": {
+          "fontSizeRef": "primitives.font.size.md",
+          "lineHeightRef": "primitives.font.lineHeight.relaxed",
+          "colorRef": "semantic.color.text.secondary"
+        },
+        "stats": {
+          "layout": "horizontal",
+          "gap": "32px",
+          "paddingTop": "primitives.space.3",
+          "borderTop": { "colorRef": "semantic.color.border.subtle", "widthRef": "primitives.border.width.1" },
+          "count": { "fontSizeRef": "primitives.font.size.lg", "fontWeightRef": "primitives.font.weight.bold", "colorRef": "semantic.color.text.primary" },
+          "label": { "fontSizeRef": "primitives.font.size.md", "colorRef": "semantic.color.text.secondary" },
+          "itemGap": "6px"
+        }
       },
       "a11y": {
         "role": "banner",
+        "landmark": true
+      }
+    },
+    {
+      "name": "BottomNavBar",
+      "description": "モバイル用ボトムナビゲーション。pill型タブバーで3タブ切り替え。<768pxで表示",
+      "variants": {},
+      "defaults": {},
+      "slots": ["tabs"],
+      "styles": {
+        "container": {
+          "layout": "horizontal",
+          "width": "fill",
+          "paddingRef": "primitives.bottomNav.container.padding"
+        },
+        "pill": {
+          "layout": "horizontal",
+          "width": "fill",
+          "heightRef": "primitives.bottomNav.pill.height",
+          "cornerRadiusRef": "primitives.bottomNav.pill.cornerRadius",
+          "paddingRef": "primitives.bottomNav.pill.padding",
+          "fillRef": "primitives.bottomNav.pill.fillRef",
+          "strokeRef": "primitives.bottomNav.pill.strokeRef",
+          "effectRef": "semantic.color.surfaceEffect.cardBlur"
+        },
+        "tab": {
+          "layout": "vertical",
+          "cornerRadiusRef": "primitives.bottomNav.tab.cornerRadius",
+          "gapRef": "primitives.bottomNav.tab.gap",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "state:active": {
+            "fillRef": "semantic.color.accent.primary",
+            "iconColorRef": "semantic.color.accent.onAccent",
+            "labelColorRef": "semantic.color.accent.onAccent",
+            "labelWeightRef": "primitives.font.weight.semibold"
+          },
+          "state:default": {
+            "fillRef": "transparent",
+            "iconColorRef": "semantic.color.text.secondary",
+            "labelColorRef": "semantic.color.text.secondary",
+            "labelWeightRef": "primitives.font.weight.medium"
+          }
+        }
+      },
+      "a11y": {
+        "role": "navigation",
+        "landmark": true,
+        "keyboard": true
+      }
+    },
+    {
+      "name": "TabletSidebar",
+      "description": "タブレット用アイコンのみサイドバー。768px〜1023pxで表示。ロゴ・アイコンナビ・アバターのみ",
+      "variants": {},
+      "defaults": {},
+      "slots": ["logo", "navigation", "avatar"],
+      "styles": {
+        "widthRef": "primitives.tabletSidebar.width",
+        "fillRef": "semantic.color.surface.sidebarGlass",
+        "fillOverlay": { "ref": "primitives.gradient.sidebarWarmOverlay" },
+        "effectRef": "semantic.color.surfaceEffect.sidebarBlur",
+        "stroke": {
+          "colorRef": "semantic.color.border.glass",
+          "widthRef": "primitives.border.width.1",
+          "sides": ["right"]
+        },
+        "padding": ["24px", "0"],
+        "alignItems": "center",
+        "navItem": {
+          "sizeRef": "primitives.tabletSidebar.navItemSize",
+          "cornerRadiusRef": "primitives.tabletSidebar.navItemRadius",
+          "iconSizeRef": "primitives.tabletSidebar.iconSize",
+          "state:active": {
+            "fillRef": "semantic.color.surface.navActive",
+            "iconColorRef": "semantic.color.accent.primary"
+          },
+          "state:default": {
+            "fillRef": "transparent",
+            "iconColorRef": "semantic.color.text.secondary"
+          }
+        }
+      },
+      "a11y": {
+        "role": "navigation",
         "landmark": true
       }
     }

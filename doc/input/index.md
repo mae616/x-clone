@@ -30,6 +30,6 @@
 
 ### design/
 - `ssot_schema.md` - SSOT JSONの契約
-- `design_context.json` - コンテキスト情報
+- `design-context.json` - コンテキスト情報
 - `copy.json` - 固定テキスト
 - `assets/` - 画像等アセット

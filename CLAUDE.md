@@ -70,7 +70,7 @@ Sidebar / NavItem / PostCard / UserCard / Button / Composer / ProfileHeader
 |---------|------|
 | `doc/input/design/design-tokens.json` | カラー/スペーシング/タイポグラフィ/シャドウ |
 | `doc/input/design/components.json` | コンポーネント定義・バリアント |
-| `doc/input/design/design_context.json` | ページレイアウト・レスポンシブ制約 |
+| `doc/input/design/design-context.json` | ページレイアウト・レスポンシブ制約 |
 | `doc/input/design/copy.json` | 日本語UIテキスト（i18n） |
 | `doc/input/design/x-clone-mvp.pen` | Pencilデザインファイル（3画面） |
 

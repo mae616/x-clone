@@ -1,8 +1,31 @@
 {
-  "meta": { "version": 1 },
+  "meta": { "version": 3, "source": "Pencil MCP x-clone-mvp.pen", "updated": "2026-03-18", "note": "v3: レスポンシブ対応（タブレット/モバイル）追加" },
   "viewports": {
     "desktop": { "width": 1440, "height": 900 },
+    "tablet": { "width": 834, "height": 1194 },
     "mobile": { "width": 390, "height": 844 }
+  },
+  "responsive": {
+    "breakpoints": {
+      "mobile": { "max": "767px", "note": "<768px" },
+      "tablet": { "min": "768px", "max": "1023px", "note": "768-1023px" },
+      "desktop": { "min": "1024px", "note": "≥1024px" }
+    },
+    "navigation": {
+      "desktop": { "component": "Sidebar", "position": "left", "width": "280px" },
+      "tablet": { "component": "TabletSidebar", "position": "left", "width": "72px" },
+      "mobile": { "component": "BottomNavBar", "position": "bottom" }
+    },
+    "mainContent": {
+      "desktop": { "paddingTokenRef": ["primitives.space.8", "primitives.space.12"], "gapTokenRef": "primitives.space.6" },
+      "tablet": { "paddingTokenRef": "primitives.space.8", "gapTokenRef": "primitives.space.6" },
+      "mobile": { "paddingTokenRef": ["primitives.space.5", "primitives.space.4"], "gapTokenRef": "primitives.space.4" }
+    },
+    "typography": {
+      "desktop": { "pageTitleSize": "primitives.font.size.3xl" },
+      "tablet": { "pageTitleSize": "primitives.font.size.3xl" },
+      "mobile": { "pageTitleSize": "primitives.font.size.2xl" }
+    }
   },
   "pages": [
     {
@@ -16,7 +39,7 @@
           "layout": {
             "type": "autoLayout",
             "direction": "vertical",
-            "paddingTokenRef": "primitives.space.8"
+            "paddingTokenRef": ["primitives.space.8", "primitives.space.6"]
           },
           "constraints": { "horizontal": "LEFT", "vertical": "TOP_BOTTOM" },
           "resizing": { "horizontal": "FIXED", "vertical": "FILL" }
@@ -27,16 +50,18 @@
             "type": "autoLayout",
             "direction": "vertical",
             "gapTokenRef": "primitives.space.6",
-            "paddingTokenRef": "primitives.space.8"
+            "paddingTokenRef": ["primitives.space.8", "primitives.space.12"]
           },
           "constraints": { "horizontal": "SCALE", "vertical": "TOP_BOTTOM" },
           "resizing": { "horizontal": "FILL", "vertical": "FILL" },
+          "clip": true,
           "nodes": [
             {
               "key": "PageTitle",
               "type": "text",
               "copyKey": "timelinePage.title",
               "typographyTokenRef": "primitives.font.size.3xl",
+              "fontWeightRef": "primitives.font.weight.bold",
               "colorTokenRef": "semantic.color.text.primary"
             },
             {
@@ -72,16 +97,18 @@
             "type": "autoLayout",
             "direction": "vertical",
             "gapTokenRef": "primitives.space.6",
-            "paddingTokenRef": "primitives.space.8"
+            "paddingTokenRef": ["primitives.space.8", "primitives.space.12"]
           },
           "constraints": { "horizontal": "SCALE", "vertical": "TOP_BOTTOM" },
           "resizing": { "horizontal": "FILL", "vertical": "FILL" },
+          "clip": true,
           "nodes": [
             {
               "key": "PageTitle",
               "type": "text",
               "copyKey": "usersPage.title",
               "typographyTokenRef": "primitives.font.size.3xl",
+              "fontWeightRef": "primitives.font.weight.bold",
               "colorTokenRef": "semantic.color.text.primary"
             },
             {
@@ -100,7 +127,7 @@
     },
     {
       "key": "ProfilePage",
-      "description": "プロフィール画面。選択したユーザーの情報（名前/ハンドル/フォロー数/フォロワー数）＋そのユーザーの投稿一覧を表示。",
+      "description": "プロフィール画面。選択したユーザーの情報＋フォロー数/フォロワー数＋投稿一覧を表示。",
       "primaryAction": "ユーザーをフォロー/アンフォローする",
       "frames": [
         {
@@ -113,10 +140,11 @@
             "type": "autoLayout",
             "direction": "vertical",
             "gapTokenRef": "primitives.space.6",
-            "paddingTokenRef": "primitives.space.8"
+            "paddingTokenRef": ["primitives.space.8", "primitives.space.12"]
           },
           "constraints": { "horizontal": "SCALE", "vertical": "TOP_BOTTOM" },
           "resizing": { "horizontal": "FILL", "vertical": "FILL" },
+          "clip": true,
           "nodes": [
             {
               "key": "ProfileHeader",
@@ -125,12 +153,18 @@
             {
               "key": "PostsSection",
               "type": "section",
+              "layout": {
+                "type": "autoLayout",
+                "direction": "vertical",
+                "gapTokenRef": "primitives.space.3"
+              },
               "nodes": [
                 {
                   "key": "SectionLabel",
                   "type": "text",
                   "copyKey": "profilePage.postsLabel",
                   "typographyTokenRef": "primitives.font.size.lg",
+                  "fontWeightRef": "primitives.font.weight.semibold",
                   "colorTokenRef": "semantic.color.text.secondary"
                 },
                 {
