@@ -3,7 +3,6 @@
  * フォロー中＋自分の投稿をcreatedAt降順で表示。投稿の作成が可能。
  * @see doc/input/design/design_context.json TimelinePage
  */
-import { Sidebar } from '../components/layout/Sidebar'
 import { Composer } from '../components/post/Composer'
 import { PostCard } from '../components/post/PostCard'
 
@@ -40,25 +39,14 @@ const DUMMY_POSTS = [
 
 export default function TimelinePage() {
   return (
-    <div
-      className="flex min-h-svh bg-stone-900"
-      style={{
-        background:
-          '#1C1917 radial-gradient(ellipse at 55% 30%, rgba(212,165,116,0.06) 0%, transparent 100%)',
-      }}
-    >
-      <Sidebar activePath="/" />
-
-      {/* メインコンテンツ: padding 32px 48px, gap 24px, clip */}
-      <main className="flex flex-1 flex-col gap-6 overflow-hidden px-12 py-8">
-        <h1 className="text-3xl font-bold text-stone-50">タイムライン</h1>
-        <Composer />
-        <div className="flex flex-col gap-3">
-          {DUMMY_POSTS.map((post) => (
-            <PostCard key={post.id} {...post} />
-          ))}
-        </div>
-      </main>
-    </div>
+    <>
+      <h1 className="text-3xl font-bold text-stone-50">タイムライン</h1>
+      <Composer />
+      <div className="flex flex-col gap-3">
+        {DUMMY_POSTS.map((post) => (
+          <PostCard key={post.id} {...post} />
+        ))}
+      </div>
+    </>
   )
 }
