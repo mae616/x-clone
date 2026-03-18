@@ -3,6 +3,7 @@
  * Lucideアイコン＋ラベル。state: default/active
  * @see doc/input/design/components.json NavItem
  */
+import { Link } from 'react-router-dom'
 import { Newspaper, Users, User, type LucideIcon } from 'lucide-react'
 
 const ICON_MAP: Record<string, LucideIcon> = {
@@ -32,8 +33,8 @@ export function NavItem({
   const isActive = state === 'active'
 
   return (
-    <a
-      href={href}
+    <Link
+      to={href}
       className={`flex items-center gap-3 rounded-md px-4 py-3 text-base ${
         isActive
           ? 'bg-nav-active font-semibold text-stone-50'
@@ -46,6 +47,6 @@ export function NavItem({
         />
       )}
       {label}
-    </a>
+    </Link>
   )
 }

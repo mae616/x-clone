@@ -3,7 +3,6 @@
  * ユーザー情報＋フォロー数/フォロワー数＋投稿一覧を表示。
  * @see doc/input/design/design_context.json ProfilePage
  */
-import { Sidebar } from '../components/layout/Sidebar'
 import { ProfileHeader } from '../components/user/ProfileHeader'
 import { PostCard } from '../components/post/PostCard'
 
@@ -41,24 +40,14 @@ const DUMMY_POSTS = [
 
 export default function ProfilePage() {
   return (
-    <div
-      className="flex min-h-svh bg-stone-900"
-      style={{
-        background:
-          '#1C1917 radial-gradient(ellipse at 55% 30%, rgba(212,165,116,0.06) 0%, transparent 100%)',
-      }}
-    >
-      <Sidebar activePath="/profile/1" />
-
-      <main className="flex flex-1 flex-col gap-6 overflow-hidden px-12 py-8">
-        <ProfileHeader {...DUMMY_PROFILE} />
-        <div className="flex flex-col gap-3">
-          <h2 className="text-lg font-semibold text-stone-400">投稿</h2>
-          {DUMMY_POSTS.map((post) => (
-            <PostCard key={post.id} {...post} />
-          ))}
-        </div>
-      </main>
-    </div>
+    <>
+      <ProfileHeader {...DUMMY_PROFILE} />
+      <div className="flex flex-col gap-3">
+        <h2 className="text-lg font-semibold text-stone-400">投稿</h2>
+        {DUMMY_POSTS.map((post) => (
+          <PostCard key={post.id} {...post} />
+        ))}
+      </div>
+    </>
   )
 }
