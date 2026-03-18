@@ -1,5 +1,5 @@
 {
-  "meta": { "version": 2, "source": "Pencil MCP x-clone-mvp.pen", "updated": "2026-03-18" },
+  "meta": { "version": 3, "source": "Pencil MCP x-clone-mvp.pen", "updated": "2026-03-18", "note": "v3: レスポンシブ（タブレット/モバイル）トークン追加" },
   "primitives": {
     "color": {
       "stone": {
@@ -110,6 +110,8 @@
       "family": "lucide",
       "size": {
         "nav": "20px",
+        "navTablet": "22px",
+        "navMobile": "18px",
         "logo": "28px"
       },
       "names": {
@@ -118,6 +120,34 @@
         "users": "users",
         "profile": "user"
       }
+    },
+    "bottomNav": {
+      "pill": {
+        "height": "62px",
+        "cornerRadius": "36px",
+        "padding": "4px",
+        "fillRef": "primitives.color.stone.800",
+        "strokeRef": "primitives.color.glass.border"
+      },
+      "tab": {
+        "cornerRadius": "26px",
+        "gap": "4px",
+        "iconSize": "18px",
+        "labelSize": "9px",
+        "labelWeight": 600,
+        "letterSpacing": "0.5px"
+      },
+      "container": {
+        "padding": ["12px", "21px", "21px", "21px"],
+        "note": "下21pxはホームインジケータのセーフエリア"
+      }
+    },
+    "tabletSidebar": {
+      "width": "72px",
+      "iconSize": "22px",
+      "navItemSize": "48px",
+      "navItemRadius": "12px",
+      "avatarSize": "36px"
     }
   },
   "semantic": {

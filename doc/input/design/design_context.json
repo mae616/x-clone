@@ -1,8 +1,31 @@
 {
-  "meta": { "version": 2, "source": "Pencil MCP x-clone-mvp.pen", "updated": "2026-03-18" },
+  "meta": { "version": 3, "source": "Pencil MCP x-clone-mvp.pen", "updated": "2026-03-18", "note": "v3: レスポンシブ対応（タブレット/モバイル）追加" },
   "viewports": {
     "desktop": { "width": 1440, "height": 900 },
+    "tablet": { "width": 834, "height": 1194 },
     "mobile": { "width": 390, "height": 844 }
+  },
+  "responsive": {
+    "breakpoints": {
+      "mobile": { "max": "767px", "note": "<768px" },
+      "tablet": { "min": "768px", "max": "1023px", "note": "768-1023px" },
+      "desktop": { "min": "1024px", "note": "≥1024px" }
+    },
+    "navigation": {
+      "desktop": { "component": "Sidebar", "position": "left", "width": "280px" },
+      "tablet": { "component": "TabletSidebar", "position": "left", "width": "72px" },
+      "mobile": { "component": "BottomNavBar", "position": "bottom" }
+    },
+    "mainContent": {
+      "desktop": { "paddingTokenRef": ["primitives.space.8", "primitives.space.12"], "gapTokenRef": "primitives.space.6" },
+      "tablet": { "paddingTokenRef": "primitives.space.8", "gapTokenRef": "primitives.space.6" },
+      "mobile": { "paddingTokenRef": ["primitives.space.5", "primitives.space.4"], "gapTokenRef": "primitives.space.4" }
+    },
+    "typography": {
+      "desktop": { "pageTitleSize": "primitives.font.size.3xl" },
+      "tablet": { "pageTitleSize": "primitives.font.size.3xl" },
+      "mobile": { "pageTitleSize": "primitives.font.size.2xl" }
+    }
   },
   "pages": [
     {
