@@ -5,6 +5,7 @@
  * @see doc/input/design/components.json UserCard
  */
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Button } from '../ui/Button'
 import { VIEWER_ID } from '../../lib/constants'
 
@@ -63,7 +64,13 @@ export function UserCard({
       <div className={`h-12 w-12 shrink-0 rounded-full ${avatarColor}`} />
       {/* ユーザー情報: gap 4px */}
       <div className="flex flex-1 flex-col gap-1">
-        <span className="text-base font-semibold text-stone-50">{name}</span>
+        {/* ユーザー名: プロフィールページへのリンク */}
+        <Link
+          to={`/profile/${id}`}
+          className="text-base font-semibold text-stone-50 transition-colors hover:text-sage-400 focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-400"
+        >
+          {name}
+        </Link>
         <span className="text-sm text-stone-400">{handle}</span>
       </div>
       {!isSelf && (
