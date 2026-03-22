@@ -6,12 +6,25 @@
  * ページ背景のウォームグロー（radial-gradient）もここで一元管理
  * @see doc/input/design/design-context.json responsive
  */
+import { useState, useCallback } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { Sidebar } from './Sidebar'
 import { BottomNavBar } from '../navigation/BottomNavBar'
+import { ShortcutHelpModal } from '../ui/ShortcutHelpModal'
+import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts'
 
 export function MainLayout() {
   const location = useLocation()
+  /** ショートカットヘルプモーダルの表示状態 */
+  const [showHelp, setShowHelp] = useState(false)
+
+  /** ヘルプモーダルの表示/非表示を切り替える */
+  const handleToggleHelp = useCallback(() => {
+    setShowHelp((prev) => !prev)
+  }, [])
+
+  // グローバルキーボードショートカットを登録
+  useKeyboardShortcuts(handleToggleHelp)
 
   return (
     <div
@@ -34,6 +47,9 @@ export function MainLayout() {
 
       {/* Mobile: ボトムナビバー（md以上で非表示） */}
       <BottomNavBar activePath={location.pathname} />
+
+      {/* ショートカットヘルプモーダル */}
+      <ShortcutHelpModal isOpen={showHelp} onClose={() => setShowHelp(false)} />
     </div>
   )
 }
