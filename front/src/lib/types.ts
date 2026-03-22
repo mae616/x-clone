@@ -7,7 +7,7 @@ import { Timestamp } from 'firebase/firestore'
 
 /** usersコレクションのドキュメント */
 export interface User {
-  /** ドキュメントID（Firestoreのauto-IDではなく手動設定） */
+  /** ドキュメントID — Firestoreドキュメントにもフィールドとして保存する（読み取り時の利便性のため） */
   id: string
   /** 表示名 */
   name: string
@@ -23,7 +23,7 @@ export interface User {
 
 /** postsコレクションのドキュメント */
 export interface Post {
-  /** ドキュメントID（auto-ID） */
+  /** ドキュメントID — 実投稿ではauto-ID、シードではドキュメントにもフィールドとして保存 */
   id: string
   /** 投稿者のユーザーID（users.id への参照） */
   authorId: string

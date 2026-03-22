@@ -34,7 +34,7 @@ const users = [
     name: 'あおい',
     handle: '@aoi',
     bio: '写真を撮るのが趣味。空の色が好き。',
-    avatarColor: 'bg-blue-subtle',
+    avatarColor: 'bg-blue-muted',
   },
   {
     id: '3',
@@ -55,7 +55,7 @@ const users = [
     name: 'りく',
     handle: '@riku',
     bio: '音楽とギターが生きがい。ライブ情報発信中🎸',
-    avatarColor: 'bg-blue-subtle',
+    avatarColor: 'bg-blue-muted',
   },
 ]
 
