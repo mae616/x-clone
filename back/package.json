@@ -5,9 +5,15 @@
   "scripts": {
     "emulators:start": "firebase emulators:start",
     "emulators:start:export": "firebase emulators:start --export-on-exit=./emulator-data",
-    "emulators:import": "firebase emulators:start --import=./emulator-data"
+    "emulators:import": "firebase emulators:start --import=./emulator-data",
+    "seed": "npx tsx seed.ts"
+  },
+  "dependencies": {
+    "firebase": "^12.10.0"
   },
   "devDependencies": {
-    "firebase-tools": "^15.10.1"
+    "@types/node": "^22.15.0",
+    "firebase-tools": "^15.10.1",
+    "tsx": "^4.19.0"
   }
 }
