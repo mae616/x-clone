@@ -50,7 +50,7 @@ export function PostCard({
   )
 
   return (
-    <article className="flex gap-3 rounded-lg border border-glass-border bg-glass-card p-5 backdrop-blur-[12px]">
+    <article className="flex gap-3 rounded-lg border border-glass-border bg-glass-card p-5 backdrop-blur-[12px] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow-accent-subtle">
       <div
         className={`h-10 w-10 shrink-0 rounded-full ${avatarColor}`}
       />

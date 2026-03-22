@@ -37,11 +37,10 @@ export function MainLayout() {
       {/* Desktop/Tablet: サイドバー（モバイルでは非表示） */}
       <Sidebar activePath={location.pathname} />
 
-      {/* メインコンテンツ: レスポンシブpadding
-          Mobile: 20px 16px, gap 16px
-          Tablet: 32px, gap 24px
-          Desktop: 32px 48px, gap 24px */}
-      <main className="flex flex-1 flex-col gap-4 overflow-hidden px-4 py-5 md:gap-6 md:p-8 lg:px-12 lg:py-8">
+      {/* メインコンテンツ: レスポンシブpadding */}
+      <main
+        className="flex flex-1 flex-col gap-4 overflow-hidden px-4 py-5 md:gap-6 md:p-8 lg:px-12 lg:py-8"
+      >
         <Outlet />
       </main>
 
