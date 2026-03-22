@@ -1,16 +1,69 @@
 /**
  * 投稿コンポーザーコンポーネント
  * アバター＋テキスト入力（上段）＋文字数カウント＋投稿ボタン（下段）
+ * Firestoreのpostsコレクションに投稿を保存する
  * @see doc/input/design/components.json Composer
  */
+import { useState } from 'react'
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
+import { db } from '../../lib/firebase'
+import { VIEWER_ID } from '../../lib/constants'
 import { Button } from '../ui/Button'
 
+/** 投稿本文の最大文字数 */
+const MAX_LENGTH = 140
+
+/**
+ * 投稿作成フォーム
+ * - テキスト入力のリアルタイム文字数カウント（0/140）
+ * - 空投稿・140文字超過時はボタン無効化
+ * - Firestore postsコレクションへの保存とloading状態管理
+ */
 export function Composer() {
+  /** 投稿本文の入力値 */
+  const [content, setContent] = useState('')
+  /** Firestore書き込み中のローディングフラグ */
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const charCount = content.length
+  const isEmpty = content.trim() === ''
+  const isOverLimit = charCount > MAX_LENGTH
+  /** 投稿ボタンの無効条件: 空文字・文字数超過・送信中 */
+  const isDisabled = isEmpty || isOverLimit || isSubmitting
+
+  /**
+   * 投稿をFirestoreに保存する
+   * postsコレクションにドキュメントを追加し、成功時に入力をクリアする
+   */
+  const handleSubmit = async () => {
+    if (isDisabled) return
+
+    setIsSubmitting(true)
+    try {
+      await addDoc(collection(db, 'posts'), {
+        authorId: VIEWER_ID,
+        content: content.trim(),
+        createdAt: serverTimestamp(),
+      })
+      // 投稿成功後に入力をクリア
+      setContent('')
+    } catch (error) {
+      // エラー時はコンソールに出力（UIへのエラー表示は今後のスプリントで対応）
+      console.error('投稿の保存に失敗しました:', error)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <form
       role="form"
       aria-label="投稿を作成"
       className="flex flex-col gap-4 rounded-lg border border-glass-border bg-glass-card p-5 backdrop-blur-[12px]"
+      onSubmit={(e) => {
+        e.preventDefault()
+        handleSubmit()
+      }}
     >
       {/* 上段: avatar + input, gap 12px */}
       <div className="flex gap-3">
@@ -18,14 +71,26 @@ export function Composer() {
         <textarea
           aria-label="投稿内容"
           placeholder="いまどうしてる？"
-          className="min-h-[60px] flex-1 resize-none bg-transparent text-base leading-relaxed text-stone-50 placeholder:text-stone-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-sage-300 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-900"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          disabled={isSubmitting}
+          className="min-h-[60px] flex-1 resize-none bg-transparent text-base leading-relaxed text-stone-50 placeholder:text-stone-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-sage-300 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-900 disabled:opacity-50"
         />
       </div>
       {/* 下段: charCount + button（右寄せ）, gap 12px */}
       <div className="flex items-center justify-end gap-3">
-        <span className="text-xs text-stone-400">0/140</span>
-        <Button tone="primary" size="md">
-          投稿する
+        <span
+          className={`text-xs ${isOverLimit ? 'text-red-400' : 'text-stone-400'}`}
+        >
+          {charCount}/{MAX_LENGTH}
+        </span>
+        <Button
+          tone="primary"
+          size="md"
+          type="submit"
+          disabled={isDisabled}
+        >
+          {isSubmitting ? '投稿中...' : '投稿する'}
         </Button>
       </div>
     </form>
