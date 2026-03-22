@@ -171,11 +171,6 @@ export default function ProfilePage() {
         setFollowersCount((prev) => prev + 1)
       }
     } catch (err) {
-      // 楽観的更新のロールバック: Firestore書き込み失敗時にUIを元に戻す
-      setIsFollowing(isFollowing)
-      setFollowersCount((prev) =>
-        isFollowing ? prev + 1 : Math.max(0, prev - 1),
-      )
       console.error('フォロー状態の更新に失敗しました:', err)
     }
   }
@@ -222,7 +217,6 @@ export default function ProfilePage() {
         {posts.map((post) => (
           <PostCard
             key={post.id}
-            authorId={post.authorId}
             authorName={user.name}
             handle={user.handle}
             content={post.content}
