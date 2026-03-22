@@ -62,7 +62,7 @@ export default function UsersPage() {
 
       {/* データ取得済み・空の場合 */}
       {loadState === 'ready' && users.length === 0 && (
-        <p className="text-center text-stone-400">
+        <p className="text-center text-stone-400" role="status">
           ユーザーが見つかりませんでした。
         </p>
       )}
@@ -76,7 +76,7 @@ export default function UsersPage() {
               id={user.id}
               name={user.name}
               handle={user.handle}
-              isFollowing={false}
+              isFollowing={false} /* TODO: #8 フォロー状態はfollowsコレクションから取得する */
               avatarColor={user.avatarColor}
             />
           ))}
