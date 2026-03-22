@@ -17,8 +17,6 @@ export interface PostCardProps {
   timestamp: string
   /** アバター背景色のTailwindクラス */
   avatarColor?: string
-  /** 投稿者のユーザーID（プロフィール遷移リンク用） */
-  authorId?: string
 }
 
 export function PostCard({
