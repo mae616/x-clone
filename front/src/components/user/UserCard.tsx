@@ -4,6 +4,7 @@
  * viewerIdと一致するユーザーにはフォローボタンを表示しない（自分自身のフォロー防止）
  * @see doc/input/design/components.json UserCard
  */
+import { useState } from 'react'
 import { Button } from '../ui/Button'
 import { VIEWER_ID } from '../../lib/constants'
 
@@ -18,12 +19,13 @@ export interface UserCardProps {
   isFollowing: boolean
   /** アバター背景色のTailwindクラス */
   avatarColor?: string
-  /** フォロートグル時のコールバック（#8で実装予定） */
-  onToggleFollow?: (userId: string) => void
+  /** フォロートグル時のコールバック */
+  onToggleFollow?: (userId: string) => Promise<void> | void
 }
 
 /**
  * ユーザーカードを描画する
+ * フォローボタン押下時は連打防止のためdisabled状態にし、処理完了後に解除する
  * @param props - ユーザー情報とフォロー状態
  */
 export function UserCard({
@@ -36,6 +38,24 @@ export function UserCard({
 }: UserCardProps) {
   /** 自分自身にはフォローボタンを表示しない */
   const isSelf = id === VIEWER_ID
+  /** フォロートグル処理中フラグ（連打防止） */
+  const [isToggling, setIsToggling] = useState(false)
+
+  /**
+   * フォローボタン押下ハンドラ
+   * 処理中はボタンをdisabledにして連打を防止する
+   */
+  const handleClick = async () => {
+    if (!onToggleFollow || isToggling) return
+    setIsToggling(true)
+    try {
+      await onToggleFollow(id)
+    } catch (err) {
+      console.error('フォロー操作に失敗しました:', err)
+    } finally {
+      setIsToggling(false)
+    }
+  }
 
   return (
     <article className="flex items-center gap-4 rounded-lg border border-glass-border bg-glass-card p-5 backdrop-blur-[12px]">
@@ -50,7 +70,10 @@ export function UserCard({
         <Button
           tone={isFollowing ? 'outline' : 'primary'}
           size="sm"
-          onClick={() => onToggleFollow?.(id)}
+          onClick={handleClick}
+          disabled={isToggling}
+          aria-label={isFollowing ? `${name}のフォローを解除` : `${name}をフォロー`}
+          aria-busy={isToggling}
         >
           {isFollowing ? 'フォロー中' : 'フォロー'}
         </Button>

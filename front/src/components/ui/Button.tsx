@@ -4,21 +4,16 @@
  * size: sm / md
  * @see doc/input/design/components.json Button
  */
-import type { ReactNode } from 'react'
+import type { ButtonHTMLAttributes, ReactNode } from 'react'
 
-export interface ButtonProps {
+export interface ButtonProps
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
   /** ボタンの見た目 */
   tone?: 'primary' | 'outline'
   /** サイズ */
   size?: 'sm' | 'md'
   /** ボタンテキスト */
   children: ReactNode
-  /** クリックハンドラ */
-  onClick?: () => void
-  /** 無効状態 */
-  disabled?: boolean
-  /** ボタンタイプ */
-  type?: 'button' | 'submit'
 }
 
 export function Button({
@@ -28,6 +23,7 @@ export function Button({
   onClick,
   disabled = false,
   type = 'button',
+  ...rest
 }: ButtonProps) {
   const sizeClass =
     size === 'sm' ? 'px-5 py-2 text-sm' : 'px-6 py-2.5 text-md'
@@ -46,6 +42,7 @@ export function Button({
           backgroundOrigin: 'border-box',
           backgroundClip: 'padding-box, border-box',
         }}
+        {...rest}
       >
         {children}
       </button>
@@ -61,6 +58,7 @@ export function Button({
       style={{
         background: 'linear-gradient(135deg, #8BAA7F 0%, #A8D4A0 100%)',
       }}
+      {...rest}
     >
       {children}
     </button>
