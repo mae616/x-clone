@@ -1,10 +1,38 @@
 rules_version = '2';
 
-// ローカルEmulator専用ルール — 本番環境では使用しない
+/**
+ * Firestoreセキュリティルール
+ * 認証なし（viewerId固定）のプロトタイプアプリ用
+ * 読み取りは全公開、書き込みはデータ構造のバリデーションで最低限の保護
+ * @see doc/input/rdd.md §非機能要件
+ */
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if true;
+
+    // usersコレクション: 読み取り公開、書き込み禁止（シードデータのみ）
+    match /users/{userId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // postsコレクション: 読み取り公開、書き込みはバリデーション付き
+    match /posts/{postId} {
+      allow read: if true;
+      allow create: if request.resource.data.keys().hasAll(['authorId', 'content', 'createdAt'])
+                    && request.resource.data.content is string
+                    && request.resource.data.content.size() > 0
+                    && request.resource.data.content.size() <= 140;
+      allow update, delete: if false;
+    }
+
+    // followsコレクション: 読み取り公開、書き込みはバリデーション付き
+    match /follows/{followId} {
+      allow read: if true;
+      allow create: if request.resource.data.keys().hasAll(['followerId', 'followeeId', 'createdAt'])
+                    && request.resource.data.followerId is string
+                    && request.resource.data.followeeId is string;
+      allow delete: if true;
+      allow update: if false;
     }
   }
 }

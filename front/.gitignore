@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# 本番環境変数（秘密情報を含むためコミットしない）
+.env.production
