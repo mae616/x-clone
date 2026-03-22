@@ -4,7 +4,7 @@
  * Firestoreのpostsコレクションに投稿を保存する
  * @see doc/input/design/components.json Composer
  */
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../../lib/firebase'
 import { VIEWER_ID } from '../../lib/constants'
@@ -24,6 +24,17 @@ export function Composer() {
   const [content, setContent] = useState('')
   /** Firestore書き込み中のローディングフラグ */
   const [isSubmitting, setIsSubmitting] = useState(false)
+  /** 投稿成功時の微光フィードバック表示フラグ */
+  const [showSuccess, setShowSuccess] = useState(false)
+
+  /**
+   * 投稿成功時に200msだけ微光（グロウ）を表示するフィードバック
+   * ユーザーに視覚的な完了感を与える
+   */
+  const flashSuccess = useCallback(() => {
+    setShowSuccess(true)
+    setTimeout(() => setShowSuccess(false), 200)
+  }, [])
 
   const charCount = content.length
   const isEmpty = content.trim() === ''
@@ -56,8 +67,9 @@ export function Composer() {
         content: content.trim(),
         createdAt: serverTimestamp(),
       })
-      // 投稿成功後に入力をクリア
+      // 投稿成功後に入力をクリアし、微光フィードバックを表示
       setContent('')
+      flashSuccess()
     } catch (error) {
       // エラー時はコンソールに出力（UIへのエラー表示は今後のスプリントで対応）
       console.error('投稿の保存に失敗しました:', error)
@@ -70,7 +82,7 @@ export function Composer() {
     <form
       role="form"
       aria-label="投稿を作成"
-      className="flex flex-col gap-4 rounded-lg border border-glass-border bg-glass-card p-5 backdrop-blur-md"
+      className={`flex flex-col gap-4 rounded-lg border border-glass-border bg-glass-card p-5 backdrop-blur-md transition-all duration-200 ${showSuccess ? 'ring-2 ring-sage-300/30' : ''}`}
       onSubmit={(e) => {
         e.preventDefault()
         handleSubmit()

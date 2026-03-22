@@ -34,7 +34,7 @@ export function Button({
         type={type}
         onClick={onClick}
         disabled={disabled}
-        className={`rounded-full bg-transparent font-semibold text-sage-300 shadow-glow-accent-subtle focus-visible:ring-2 focus-visible:ring-sage-300 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-900 disabled:cursor-not-allowed disabled:opacity-50 ${sizeClass}`}
+        className={`rounded-full bg-transparent font-semibold text-sage-300 shadow-glow-accent-subtle transition-all duration-200 focus-visible:ring-2 focus-visible:ring-sage-300 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-900 disabled:cursor-not-allowed disabled:opacity-50 ${sizeClass}`}
         style={{
           border: '1px solid transparent',
           backgroundImage:
@@ -54,7 +54,7 @@ export function Button({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`rounded-full font-semibold text-stone-900 shadow-glow-accent focus-visible:ring-2 focus-visible:ring-sage-300 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-900 disabled:cursor-not-allowed disabled:opacity-50 ${sizeClass}`}
+      className={`rounded-full font-semibold text-stone-900 shadow-glow-accent transition-all duration-200 focus-visible:ring-2 focus-visible:ring-sage-300 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-900 disabled:cursor-not-allowed disabled:opacity-50 ${sizeClass}`}
       style={{
         background: 'linear-gradient(135deg, #8BAA7F 0%, #A8D4A0 100%)',
       }}
