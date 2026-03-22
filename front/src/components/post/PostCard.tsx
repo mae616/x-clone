@@ -5,6 +5,8 @@
  */
 
 export interface PostCardProps {
+  /** 著者のユーザーID（プロフィール遷移リンク用） */
+  authorId?: string
   /** 著者名 */
   authorName: string
   /** ハンドル（@xxx） */
