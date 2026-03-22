@@ -4,7 +4,7 @@
  * onSnapshotでリアルタイム更新し、新規投稿を即時反映する。
  * @see doc/input/design/design-context.json TimelinePage
  */
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   collection,
   query,
@@ -20,20 +20,9 @@ import { formatRelativeTime } from '../lib/utils'
 import { Composer } from '../components/post/Composer'
 import { PostCard } from '../components/post/PostCard'
 
-/** タイムラインに表示するための投稿データ（ユーザー情報結合済み） */
-interface TimelinePost {
-  id: string
-  authorId: string
-  authorName: string
-  handle: string
-  content: string
-  timestamp: string
-  avatarColor: string
-}
-
 export default function TimelinePage() {
-  /** タイムライン投稿一覧 */
-  const [posts, setPosts] = useState<TimelinePost[]>([])
+  /** 投稿のrawデータ（ユーザー情報未結合） */
+  const [rawPosts, setRawPosts] = useState<Post[]>([])
   /** ユーザー情報のマップ（authorId → User） */
   const [usersMap, setUsersMap] = useState<Map<string, User>>(new Map())
   /** データ読み込み中フラグ */
@@ -41,7 +30,7 @@ export default function TimelinePage() {
   /** エラーメッセージ */
   const [error, setError] = useState<string | null>(null)
 
-  // usersコレクション全体を取得してマップ化
+  /** usersコレクション全体をリアルタイム監視してマップ化 */
   useEffect(() => {
     const unsubscribe = onSnapshot(
       collection(db, 'users'),
@@ -60,15 +49,15 @@ export default function TimelinePage() {
     return unsubscribe
   }, [])
 
-  // フォロー中IDを取得し、投稿をリアルタイム購読
+  /**
+   * フォロー中IDを取得し、投稿をリアルタイム購読する
+   * フォローリストは初回のみ静的取得（getDocs）。
+   * タイムライン表示中のフォロー変更は反映されない（ページ再訪問で更新）。
+   */
   useEffect(() => {
     let unsubscribePosts: (() => void) | null = null
+    let cancelled = false
 
-    /**
-     * フォロー中ユーザーIDを取得し、投稿クエリを購読する
-     * Firestoreの `in` 演算子は最大30要素のため、フォロー数が多い場合は分割が必要
-     * （MVP段階ではシードデータが少数のため単一クエリで対応）
-     */
     const setup = async () => {
       try {
         // viewerがフォロー中のユーザーIDリストを取得
@@ -98,41 +87,63 @@ export default function TimelinePage() {
         unsubscribePosts = onSnapshot(
           postsQuery,
           (snapshot) => {
-            const timelinePosts: TimelinePost[] = snapshot.docs.map((doc) => {
-              const data = doc.data() as Omit<Post, 'id'>
-              const user = usersMap.get(data.authorId)
-              return {
-                id: doc.id,
-                authorId: data.authorId,
-                authorName: user?.name ?? '不明なユーザー',
-                handle: user?.handle ?? '@unknown',
-                content: data.content,
-                timestamp: formatRelativeTime(data.createdAt),
-                avatarColor: user?.avatarColor ?? 'bg-stone-700',
-              }
-            })
-            setPosts(timelinePosts)
+            if (cancelled) return
+            const fetchedPosts = snapshot.docs.map((doc) => ({
+              ...(doc.data() as Omit<Post, 'id'>),
+              id: doc.id,
+            })) as Post[]
+            setRawPosts(fetchedPosts)
             setLoading(false)
           },
           (err) => {
             console.error('投稿の取得に失敗しました:', err)
-            setError('投稿の読み込みに失敗しました。再読み込みしてください。')
-            setLoading(false)
+            if (!cancelled) {
+              setError(
+                '投稿の読み込みに失敗しました。再読み込みしてください。',
+              )
+              setLoading(false)
+            }
           },
         )
       } catch (err) {
         console.error('タイムラインの初期化に失敗しました:', err)
-        setError('タイムラインの読み込みに失敗しました。再読み込みしてください。')
-        setLoading(false)
+        if (!cancelled) {
+          setError(
+            'タイムラインの読み込みに失敗しました。再読み込みしてください。',
+          )
+          setLoading(false)
+        }
       }
     }
 
     setup()
 
     return () => {
+      cancelled = true
       unsubscribePosts?.()
     }
-  }, [usersMap])
+  }, [])
+
+  /**
+   * rawPostsとusersMapを結合してタイムライン表示用データを生成する
+   * usersMap変更時もrawPosts変更時もUIが更新される（再購読ループなし）
+   */
+  const timelinePosts = useMemo(
+    () =>
+      rawPosts.map((post) => {
+        const user = usersMap.get(post.authorId)
+        return {
+          id: post.id,
+          authorId: post.authorId,
+          authorName: user?.name ?? '不明なユーザー',
+          handle: user?.handle ?? '@unknown',
+          content: post.content,
+          timestamp: formatRelativeTime(post.createdAt),
+          avatarColor: user?.avatarColor ?? 'bg-stone-700',
+        }
+      }),
+    [rawPosts, usersMap],
+  )
 
   return (
     <>
@@ -140,7 +151,9 @@ export default function TimelinePage() {
       <Composer />
 
       {loading && (
-        <p className="py-8 text-center text-stone-400">読み込み中...</p>
+        <p className="py-8 text-center text-stone-400" role="status">
+          読み込み中...
+        </p>
       )}
 
       {error && (
@@ -149,15 +162,15 @@ export default function TimelinePage() {
         </p>
       )}
 
-      {!loading && !error && posts.length === 0 && (
-        <p className="py-8 text-center text-stone-400">
+      {!loading && !error && timelinePosts.length === 0 && (
+        <p className="py-8 text-center text-stone-400" role="status">
           まだ投稿がありません。最初の投稿をしてみましょう！
         </p>
       )}
 
-      {!loading && !error && posts.length > 0 && (
+      {!loading && !error && timelinePosts.length > 0 && (
         <div className="flex flex-col gap-3">
-          {posts.map((post) => (
+          {timelinePosts.map((post) => (
             <PostCard
               key={post.id}
               authorId={post.authorId}
