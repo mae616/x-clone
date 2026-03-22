@@ -120,7 +120,7 @@ test.describe('タイムライン画面', () => {
     await expect(textarea).toHaveValue('')
   })
 
-  test('タイムラインにフォロー中+自分の投稿のみ表示される（createdAt降順）', async ({
+  test('タイムラインに投稿が表示される', async ({
     page,
   }) => {
     await page.goto('/')
