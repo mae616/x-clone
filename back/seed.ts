@@ -15,9 +15,19 @@ import {
   Timestamp,
 } from 'firebase/firestore'
 
-const app = initializeApp({ projectId: 'x-clone-local' })
+/**
+ * 環境分岐: FIREBASE_USE_PRODUCTION=true なら本番、それ以外はEmulator
+ * 本番投入: FIREBASE_USE_PRODUCTION=true npx tsx seed.ts
+ * Emulator投入: npx tsx seed.ts
+ */
+const isProduction = process.env.FIREBASE_USE_PRODUCTION === 'true'
+
+const app = initializeApp({ projectId: isProduction ? 'hot-sns' : 'x-clone-local' })
 const db = getFirestore(app)
-connectFirestoreEmulator(db, 'localhost', 8080)
+
+if (!isProduction) {
+  connectFirestoreEmulator(db, 'localhost', 8080)
+}
 
 // ── ユーザーデータ（5人） ──
 // viewerId = '1' = さくら（CLAUDE.md / constants.ts で固定）
