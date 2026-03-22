@@ -1,6 +1,7 @@
 /**
  * プロフィールヘッダーコンポーネント
  * アバター＋名前＋ハンドル＋bio＋フォローボタン＋フォロー数/フォロワー数
+ * viewerが自分自身のプロフィールを閲覧中はフォローボタンを非表示にする
  * @see doc/input/design/components.json ProfileHeader
  */
 import { Button } from '../ui/Button'
@@ -20,6 +21,10 @@ export interface ProfileHeaderProps {
   isFollowing: boolean
   /** アバター背景色のTailwindクラス */
   avatarColor?: string
+  /** 自分自身のプロフィールかどうか（trueならフォローボタン非表示） */
+  isSelf?: boolean
+  /** フォロー/アンフォロートグル時のコールバック */
+  onToggleFollow?: () => void
 }
 
 export function ProfileHeader({
@@ -30,6 +35,8 @@ export function ProfileHeader({
   followersCount,
   isFollowing,
   avatarColor = 'bg-stone-700',
+  isSelf = false,
+  onToggleFollow,
 }: ProfileHeaderProps) {
   return (
     <header
@@ -43,9 +50,16 @@ export function ProfileHeader({
           <h1 className="text-xl font-bold text-stone-50">{name}</h1>
           <span className="text-sm text-stone-400">{handle}</span>
         </div>
-        <Button tone={isFollowing ? 'outline' : 'primary'} size="md">
-          {isFollowing ? 'フォロー中' : 'フォロー'}
-        </Button>
+        {/* 自分のプロフィールではフォローボタンを表示しない */}
+        {!isSelf && (
+          <Button
+            tone={isFollowing ? 'outline' : 'primary'}
+            size="md"
+            onClick={onToggleFollow}
+          >
+            {isFollowing ? 'フォロー中' : 'フォロー'}
+          </Button>
+        )}
       </div>
 
       {/* bio */}
