@@ -82,7 +82,7 @@ export function Composer() {
     <form
       role="form"
       aria-label="投稿を作成"
-      className={`flex flex-col gap-4 rounded-lg border border-glass-border bg-glass-card p-5 backdrop-blur-md transition-all duration-700 ease-out ${showSuccess ? 'ring-2 ring-sage-300/30' : ''}`}
+      className={`flex flex-col gap-4 rounded-lg border bg-glass-card p-5 backdrop-blur-md transition-all duration-700 ease-out ${showSuccess ? 'border-sage-300/30 ring-2 ring-sage-300/30' : 'border-glass-border'} focus-within:border-stone-500`}
       onSubmit={(e) => {
         e.preventDefault()
         handleSubmit()
@@ -98,7 +98,7 @@ export function Composer() {
           onChange={(e) => setContent(e.target.value)}
           onKeyDown={handleKeyDown}
           disabled={isSubmitting}
-          className="min-h-[60px] flex-1 resize-none bg-transparent text-base leading-relaxed text-stone-50 placeholder:text-stone-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-sage-300 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-900 disabled:opacity-50"
+          className="min-h-[60px] flex-1 resize-none bg-transparent text-base leading-relaxed text-stone-50 placeholder:text-stone-400 focus:outline-none disabled:opacity-50"
         />
       </div>
       {/* 下段: charCount + button（右寄せ）, gap 12px */}
