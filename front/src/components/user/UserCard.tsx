@@ -72,6 +72,8 @@ export function UserCard({
           size="sm"
           onClick={handleClick}
           disabled={isToggling}
+          aria-label={isFollowing ? `${name}のフォローを解除` : `${name}をフォロー`}
+          aria-busy={isToggling}
         >
           {isFollowing ? 'フォロー中' : 'フォロー'}
         </Button>
