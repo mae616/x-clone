@@ -38,6 +38,7 @@ export function PostCard({
   const authorNameElement = authorId ? (
     <Link
       to={`/profile/${authorId}`}
+      aria-label={`${authorName}のプロフィールを表示`}
       className="text-base font-semibold text-stone-50 transition-colors hover:text-sage-400 focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-400"
     >
       {authorName}

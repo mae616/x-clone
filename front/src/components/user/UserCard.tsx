@@ -67,6 +67,7 @@ export function UserCard({
         {/* ユーザー名: プロフィールページへのリンク */}
         <Link
           to={`/profile/${id}`}
+          aria-label={`${name}のプロフィールを表示`}
           className="text-base font-semibold text-stone-50 transition-colors hover:text-sage-400 focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-400"
         >
           {name}
