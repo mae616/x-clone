@@ -59,7 +59,7 @@ export function Composer() {
     <form
       role="form"
       aria-label="投稿を作成"
-      className="flex flex-col gap-4 rounded-lg border border-glass-border bg-glass-card p-5 backdrop-blur-[12px]"
+      className="flex flex-col gap-4 rounded-lg border border-glass-border bg-glass-card p-5 backdrop-blur-md"
       onSubmit={(e) => {
         e.preventDefault()
         handleSubmit()
