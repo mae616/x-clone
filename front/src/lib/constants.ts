@@ -14,10 +14,8 @@ export const VIEWER_ID = '1'
  * @see back/seed.ts ユーザーシードデータのavatarColor
  */
 export const AVATAR_COLORS = [
-  'bg-honey',
-  'bg-blue-400',
-  'bg-sage-300',
-  'bg-sage-400',
-  'bg-danger-300',
+  'bg-honey-muted',
+  'bg-blue-muted',
+  'bg-sage-muted',
   'bg-stone-700',
 ] as const
