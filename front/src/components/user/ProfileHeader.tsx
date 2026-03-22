@@ -56,6 +56,11 @@ export function ProfileHeader({
             tone={isFollowing ? 'outline' : 'primary'}
             size="md"
             onClick={onToggleFollow}
+            aria-label={
+              isFollowing
+                ? `${name}のフォローを解除`
+                : `${name}をフォロー`
+            }
           >
             {isFollowing ? 'フォロー中' : 'フォロー'}
           </Button>
