@@ -31,6 +31,7 @@
         "muted": "#F0A0A026"
       },
       "blue": {
+        "400": "#5B9BD5",
         "muted": "#5B9BD526"
       },
       "navActive": "#33302C"
