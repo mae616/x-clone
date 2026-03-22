@@ -37,11 +37,9 @@ export function MainLayout() {
       {/* Desktop/Tablet: サイドバー（モバイルでは非表示） */}
       <Sidebar activePath={location.pathname} />
 
-      {/* メインコンテンツ: レスポンシブpadding + ページ遷移フェードイン
-          key={pathname} でルート変更時にアニメーションを再トリガー */}
+      {/* メインコンテンツ: レスポンシブpadding */}
       <main
-        key={location.pathname}
-        className="animate-fadeIn flex flex-1 flex-col gap-4 overflow-hidden px-4 py-5 md:gap-6 md:p-8 lg:px-12 lg:py-8"
+        className="flex flex-1 flex-col gap-4 overflow-hidden px-4 py-5 md:gap-6 md:p-8 lg:px-12 lg:py-8"
       >
         <Outlet />
       </main>

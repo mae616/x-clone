@@ -33,7 +33,7 @@ export function Composer() {
    */
   const flashSuccess = useCallback(() => {
     setShowSuccess(true)
-    setTimeout(() => setShowSuccess(false), 200)
+    setTimeout(() => setShowSuccess(false), 600)
   }, [])
 
   const charCount = content.length
@@ -82,7 +82,7 @@ export function Composer() {
     <form
       role="form"
       aria-label="投稿を作成"
-      className={`flex flex-col gap-4 rounded-lg border border-glass-border bg-glass-card p-5 backdrop-blur-md transition-all duration-200 ${showSuccess ? 'ring-2 ring-sage-300/30' : ''}`}
+      className={`flex flex-col gap-4 rounded-lg border border-glass-border bg-glass-card p-5 backdrop-blur-md transition-all duration-700 ease-out ${showSuccess ? 'ring-2 ring-sage-300/30' : ''}`}
       onSubmit={(e) => {
         e.preventDefault()
         handleSubmit()
